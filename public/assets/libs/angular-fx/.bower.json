@@ -1,0 +1,41 @@
+{
+  "name": "angular-fx",
+  "version": "1.1.0",
+  "description": "Angular.js CSS3 animation directives, conditional animations and effects for your elements.",
+  "license": "MIT",
+  "authors": [
+    "Filippo Oretti <filippo.oretti@gmail.com",
+    "Dario Andrei <wouldgo84@gmail.com>"
+  ],
+  "keywords": [
+    "angularjs",
+    "animations",
+    "effects",
+    "animate"
+  ],
+  "main": [
+    "./dist/angular-fx.min.js",
+    "./dist/angular-fx.min.css"
+  ],
+  "dependencies": {
+    "animate.css": "~3.3.0"
+  },
+  "homepage": "http://720kb.github.io/angular-fx",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.0",
+    "commit": "361bfd33dc4a5a55feb092b2b2ebdd854b8d738c"
+  },
+  "_source": "git://github.com/720kb/angular-fx.git",
+  "_target": "~1.1.0",
+  "_originalSource": "angular-fx",
+  "_direct": true
+}

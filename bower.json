@@ -1,0 +1,30 @@
+{
+  "name": "familiar",
+  "description": "",
+  "main": "server.js",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/assets/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.8",
+    "angular-video-bg": "~0.3.3",
+    "bootstrap": "~3.3.6",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.14.3",
+    "angular-fx": "~1.1.0",
+    "csshake": "*",
+    "ng-input": "~0.0.8",
+    "ngMorph": "angular-morph#~0.1.0"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
+  }
+}

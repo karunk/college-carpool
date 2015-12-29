@@ -1,0 +1,329 @@
+/* BASE STYLES
+============================================================================= */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700|Satisfy);
+
+@font-face {
+    font-family: 'codropsicons';
+    src:url('../fonts/codropsicons/codropsicons.eot');
+    src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+        url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+        url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html         { overflow-y:hidden; }
+.page        { 
+    bottom:0; 
+    padding-top:20px;
+    position:absolute; 
+    text-align:center;
+    top:0; 
+    left: 0; 
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    transform: translate3d(0,0,0);
+}
+
+
+.page h1    { 
+    font-weight: 300;
+    font-size: 4.4em;
+    line-height: 1;
+    letter-spacing: 16px;
+    margin: 0;
+    top: 12%;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    word-spacing: -0.3em;
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+
+}
+
+.page h1 span {
+    padding: 30px;
+    font-family: 'Satisfy', serif;
+    font-weight: 400;
+    font-size: 40%;
+    text-transform: none;
+    word-spacing: 0;
+    letter-spacing: 0;
+    display: block;
+    opacity: 0.4;
+}
+
+.page h1 strong {
+    color: rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    color: #fff;
+    background: #0ac2d2;
+    overflow: hidden;
+}
+
+.pt-touch-button {
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 10px 0 20px;
+    padding: 0px 20px;
+    line-height: 50px;
+    height: 50px;
+    letter-spacing: 1px;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pt-touch-button {
+    background: #fff;
+    color: #aaa;
+}
+
+bg-1 {
+    background: #ECEFF1;
+    color: #37474f;
+}
+.bg-2 {
+    background: #7986cb;
+    color: #ECEFF1;
+}
+.bg-3 {
+    background: #37474f;
+    color: #fff;
+}
+
+
+/* BUTTON - CUSTOM !! -- */
+
+/* Common button styles */
+
+.button {
+    float: left;
+    min-width: 150px;
+    max-width: 250px;
+    display: block;
+    margin: 1em;
+    padding: 1em 2em;
+    border: none;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+}
+.button:focus {
+    outline: none;
+}
+.button > span {
+    vertical-align: middle;
+}
+
+/* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
+.bg-1 .button {
+    color: #37474f;
+    border-color: #37474f;
+}
+.bg-2 .button {
+    color: #ECEFF1;
+    border-color: #ECEFF1;
+}
+.bg-3 .button {
+    color: #fff;
+    border-color: #fff;
+}
+
+/* Sizes */
+.button--size-s {
+    font-size: 14px;
+}
+.button--size-m {
+    font-size: 16px;
+}
+.button--size-l {
+    font-size: 18px;
+}
+
+/* Typography and Roundedness */
+.button--text-upper {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.button--text-thin {
+    font-weight: 300;
+}
+.button--text-medium {
+    font-weight: 500;
+}
+.button--text-thick {
+    font-weight: 600;
+}
+.button--round-s {
+    border-radius: 5px;
+}
+.button--round-m {
+    border-radius: 15px;
+}
+.button--round-l {
+    border-radius: 40px;
+}
+
+/* Borders */
+.button--border-thin {
+    border: 1px solid;
+}
+.button--border-medium {
+    border: 2px solid;
+}
+.button--border-thick {
+    border: 3px solid;
+}
+
+/* Individual button styles */
+
+/* Wayra */
+.button--wayra {
+    overflow: hidden;
+    width: 245px;
+    -webkit-transition: border-color 0.3s, color 0.3s;
+    transition: border-color 0.3s, color 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+    background: #37474f;
+    z-index: -1;
+    -webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+    transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.button--wayra:hover {
+    color: #fff;
+    border-color: #3f51b5;
+}
+.button--wayra.button--inverted:hover {
+    color: #3f51b5;
+    border-color: #fff;
+}
+.button--wayra:hover::before {
+    opacity: 1;
+    background-color: #3f51b5;
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--wayra.button--inverted:hover::before {
+    background-color: #fff;
+}
+
+
+
+/* PAGES
+============================================================================= */
+.page-home      {  color: #fff; background: #0ac2d2;  }
+.page-about     { background:#7bb7fa; color:#a55400; }
+.page-contact   { background:#60d7a9; color:#9e0000; }
+
+
+
+
+
+/* ANIMATIONS
+============================================================================= */
+
+.page.ng-leave  { z-index:9999; }
+.page.ng-enter  { z-index:8888; }
+
+/* page specific animations ------------------------ */
+
+/* home -------------------------- */
+.page-home.ng-leave         {
+    transform-origin: 0% 0%;
+    animation: moveToRight .6s ease-in-out both;
+}
+.page-home.ng-enter         {  
+   
+
+    animation: moveFromLeft .6s ease-in-out both; 
+}
+
+/* about ------------------------ */
+.page-about.ng-leave        {
+
+    animation: moveToRight .6s ease-in-out both;
+}
+.page-about.ng-enter        {  
+  
+   animation: moveFromLeft .6s ease-in-out both;
+}
+
+/* contact ---------------------- */
+.page-contact.ng-leave      {
+    
+  
+   
+    animation: moveToRight .6s ease-in-out both;
+}
+.page-contact.ng-enter      { 
+   
+    animation: moveFromLeft .6s ease-in-out both; 
+}
+
+
+
+@keyframes moveToLeft {
+    from { }
+    to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+    from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+@keyframes moveToRight { 
+    from { }
+    to { -webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+@keyframes moveFromRight {
+    from { -webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+@keyframes moveToTop {
+    from { }
+    to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+@keyframes moveFromTop {
+    from { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
+@keyframes moveToBottom {
+    from { }
+    to { -webkit-transform: translateY(100%); transform: translateY(100%); }
+}
+@keyframes moveFromBottom {
+    from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+}

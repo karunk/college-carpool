@@ -1,0 +1,8 @@
+back
+expo
+circ
+quint
+quart
+cubic
+quad
+sine
