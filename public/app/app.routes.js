@@ -44,10 +44,16 @@ angular.module('app.routes', ['ui.router'])
             templateUrl: 'app/views/pages/signup/form-payment.html'
         })
 
+        .state('verify', {
+            url: '/verify',
+            templateUrl: 'app/views/pages/signup/form-verify.html',
+            controller: 'homeController'
+        })
+
         .state('user', {
             url : '/user',
-            templateUrl: 'app/views/pages/userinfo.html',
-            controller: 'mainController',
+            templateUrl: 'app/views/pages/dash/dashboard.html',
+            controller: 'MapCtrl',
             controllerAs : 'login'
         });
 

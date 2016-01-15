@@ -14,8 +14,12 @@
 }
 
 
-html         { overflow-y:hidden; }
-.page        { 
+html         
+{ 
+    overflow-y:hidden; 
+}
+.page        
+{ 
     bottom:0; 
     padding-top:20px;
     position:absolute; 
@@ -28,8 +32,13 @@ html         { overflow-y:hidden; }
     transform: translate3d(0,0,0);
 }
 
-
-.page h1    { 
+body 
+{
+    color: #fff;
+    overflow: hidden;
+}
+.page h1    
+{ 
     font-weight: 300;
     font-size: 4.4em;
     line-height: 1;
@@ -38,7 +47,6 @@ html         { overflow-y:hidden; }
     top: 12%;
     width: 100%;
     text-align: center;
-    text-transform: uppercase;
     word-spacing: -0.3em;
     font-family: 'Lato', Calibri, Arial, sans-serif;
 
@@ -60,11 +68,12 @@ html         { overflow-y:hidden; }
     color: rgba(0,0,0,0.1);
 }
 
-body {
-    font-family: 'Lato', Calibri, Arial, sans-serif;
-    color: #fff;
-    background: #0ac2d2;
-    overflow: hidden;
+#map_canvas
+{
+    height: 400px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
 }
 
 .pt-touch-button {
@@ -248,7 +257,7 @@ bg-1 {
 /* PAGES
 ============================================================================= */
 .page-home      {  color: #fff; background: #0ac2d2;  }
-.page-about     { background:#7bb7fa; color:#a55400; }
+.page-about     { background: white; color: white; }
 .page-contact   { background:#60d7a9; color:#9e0000; }
 
 

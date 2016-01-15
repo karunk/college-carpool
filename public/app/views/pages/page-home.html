@@ -1,8 +1,12 @@
+
+<link rel="stylesheet" type="text/css" href="assets/css/login.css">
 <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+
 
 <div id="main">
 
   <div id="main3" class="shake-slow">
+
     <div>
           <h1 ng-if="home.loggedIn == false"><strong>COLLEGE</strong>CARPOOL</h1>
           <h1 ng-if="home.loggedIn == true"><strong>{{home.college}}</strong>CARPOOL</h1>
@@ -14,37 +18,36 @@
 
   </div>
 
+  <div id="main2">
 
-  <div ng-if="home.loggedIn == false" id="main2">
+    <div ng-if="home.loggedIn == false" id="main2">
 
-      <a ui-sref="login">
-        <button  class="button button--wayra button--border-thick button--text-upper button--size-s">LOGIN</button>
-      </a>
+        <a>
+          <button  ng-morph-modal="example1" class="button button--wayra button--border-thick button--text-upper button--size-s">LOGIN</button>
+        </a>
+  
+        <a ui-sref="form">  
+          <button class="button button--wayra button--border-thick button--text-upper button--size-s">SIGN UP</button>  
+        </a>
 
-      <a ui-sref="form">  
-        <button class="button button--wayra button--border-thick button--text-upper button--size-s">SIGN UP</button>  
-      </a>
+    </div>
 
-  </div>
+    <div ng-if="home.loggedIn == true" id="main2">
+        <a ui-sref="user">
+          <button class="button button--wayra button--border-thick button--text-upper button--size-s">DASHBOARD</button>
+        </a>
 
-  <div ng-if="home.loggedIn == true" id="main2">
-      <a ui-sref="user">
-        <button class="button button--wayra button--border-thick button--text-upper button--size-s">DASHBOARD</button>
-      </a>
+        <a ng-click = "home.doLogout()">  
+          <button  class="button button--wayra button--border-thick button--text-upper button--size-s"><text>LOGOUT</text></button>  
+        </a>
 
-      <a ng-click = "home.doLogout()">  
-        <button  class="button button--wayra button--border-thick button--text-upper button--size-s"><text ng-if="home.processing==true">LOGOUT</text></button>  
-      </a>
+    </div>
 
   </div>
 
 </div>
 
 
-   			
-
-
-
-
-
-    
+        <a>
+          <text  ng-morph-overlay="example2">More about us</text>
+        </a>

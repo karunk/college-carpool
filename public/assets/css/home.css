@@ -1,162 +1,90 @@
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Open Sans';
-  background: #F0F1F0;
-  font-size: 1em;
-  text-align: center;
-}
-button {
-  width: 250px;
-  height: 50px;
-  color: #F0F1F0;
-  font-size: 0.8em;
-  background: #1BBA9A;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  margin-top: 10em;
+.jumbotron.vertical-center {
+  margin-bottom: 0; /* Remove the default bottom margin of .jumbotron */
+  background-color: transparent;
 }
 
-/* close icon */
-.glyphicon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.glyphicon-remove:before {
-  content: "\e014";
-}
+.vertical-center {
+  min-height: 100%;  /* Fallback for vh unit */
+  min-height: 100vh; /* You might also want to use
+                        'height' property instead.
+                        
+                        Note that for percentage values of
+                        'height' or 'min-height' properties,
+                        the 'height' of the parent element
+                        should be specified explicitly.
+  
+                        In this case the parent of '.vertical-center'
+                        is the <body> element */
 
-
-/* demo info page */
-.info-overlay {
-  color: #F0F1F0;
-  font-size: 20px;
-  text-align: left;
-  background: #1BBA9A;
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+  /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+  
+  /* In legacy web browsers such as Firefox 9
+     we need to specify the width of the flex container */
+  width: 100%;
+  
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+  
+     Therefore, we should use the following declarations to get it centered again */
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
 }
-.content {
-  padding: 20px;
-}
-.content h2 {
-  text-align: center;
-}
-.info-overlay > button {
-  color: #1BBA9A;
-  display: block;
-  background: #fcfcfc;
-  /* center the button: */
-  left: -125px;
-  margin: 20px 50%;
-  position: relative;
-}
-
-/* signup form */
-.sign-up {
-  background: #fcfcfc;
-  width: 400px;
-  height: 500px;
-  color: #F0F1F0;
-  font-weight: bold;
-}
-.sign-up button {
-  background: #1BBA9A;
-  color: #fcfcfc;
-}
-.sign-up form label {
-  color: #1BBA9A;
-}
-.sign-up form input[type="text"],
-.sign-up form input[type="password"] {
-  border: 2px solid #1BBA9A;
-  color: #1BBA9A;
+.centerBlock {
+                display: table;
+                margin: 0 auto;
+            }
+.container {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 
 
-/* demo login form */
-.login {
-  background: #1BBA9A;
-  width: 400px;
-  height: 400px;
-  color: #F0F1F0;
-  font-weight: bold;
+
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
 }
-.close {
+
+article {
+/*  just a fancy border  */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 10px solid rgba(255, 255, 255, 0.5);
   margin: 10px;
-  z-index: 2000;
-  font-size: 25px;
-  float: right;
-  cursor: pointer;
-  color: rgb(19, 146, 121);
-}
-.close:hover {
-  color: #F0F1F0;
-}
-form {
-  position: relative;
-  text-align: left;
-  padding: 25px;
-}
-form p {
-  margin-bottom: 5px;
-}
-form label {
-  display: block;
-  font-size: 16px;
-  padding: 10px 0 0;
-  color: #FCFCFC;
-  letter-spacing: 1px;
-  font-weight: normal;
-}
-form input {
-  padding: 10px;
-  width: 100%;
-  border: 2px solid #F0F1F0;
-  background: transparent;
-  color: #F0F1F0;
-  font-weight: 300;
-  font-size: 24px;
-}
-form input:focus {
-  outline: 0;
-}
-form button {
-  display: block;
-  margin-top: 30px;
-  padding: 1em;
-  width: 100%;
-  border: none;
-  background: #F0F1F0;
-  color: #1BBA9A;
-  letter-spacing: 1px;
-  line-height: 0;
-  font-size: 17px;
 }
 
-
-/* footer */
-.info {
-  margin-top: 10em;
-  color: #AFAFAF;
-  line-height: 1.8em;
-  font-size: 0.8em;
-  letter-spacing: -.02em;
-}
-.info a {
-  color: #1BBA9A;
-  text-decoration: none;
+article > h1 {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: #fff;
+  font-family: Oswald, sans-serif;
+  text-align: center;
 }

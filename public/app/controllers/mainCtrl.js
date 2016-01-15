@@ -1,15 +1,38 @@
 var app = angular.module('mainCtrl', [])
 
+    
 
 
-app.controller('homeController', function($scope, $rootScope, $location, Auth) {
+app.controller('homeController', function($scope, $rootScope, $location, Auth, $state, geolocation, $timeout) {
     //HOME-PAGE CONTROLLER ------------------------------------------------------------------------------------------
 
-    $scope.pageClass = 'page-home';
 
-    
+
+
+
+    $scope.pageClass = 'page-home';
+    $scope.example1 = {
+        closeEl: '.close',
+        modal: {
+          templateUrl: 'app/views/pages/login.html'
+        }
+      };
+
+
+  $scope.example2 = {
+    closeEl: '.close',
+    overlay: {
+      templateUrl: 'app/views/pages/more-info.html'
+    }
+  };
+
+
+
     var vm = this;
     console.log('home');
+    $scope.now = false;
+
+
 
 
     vm.loggedIn = Auth.isLoggedIn();
@@ -22,6 +45,23 @@ app.controller('homeController', function($scope, $rootScope, $location, Auth) {
             });
     }
 
+    vm.doLogin = function() {
+        vm.processing = true;
+
+        // clear the error
+        vm.error = '';
+
+        Auth.login(vm.loginData.username, vm.loginData.password)
+            .success(function(data) {
+                vm.processing = false;          
+                console.log('HERE2 login');
+                // if a user successfully logs in, redirect to users page
+                if (data.success)           
+                    $location.path('/user');
+                else 
+                    vm.error = data.message;           
+            });
+    };
 
     vm.doLogout = function() {
         
@@ -30,7 +70,8 @@ app.controller('homeController', function($scope, $rootScope, $location, Auth) {
         Auth.logout();
         
         
-        $location.path('/login');
+        $location.path('/');
+        $state.go($state.current, {}, {reload: true});
     };
 
     
@@ -38,16 +79,45 @@ app.controller('homeController', function($scope, $rootScope, $location, Auth) {
 
 
 
-app.controller('formController', function($scope) {
+
+app.controller('formController', function($scope, $state, $rootScope, geolocation) {
     
     // we will store all of our form data in this object
     $scope.formData = {};
+    $scope.pageClass = 'page-about';
+    $scope.user = {};
+    $scope.currentstate = '';
     
-    // function to process the form
-    $scope.processForm = function() {
-        alert('awesome!');
-    };
-    
+
+    $scope.submitForm = function() {
+
+        console.log('hihi');
+        // check to make sure the form is completely valid
+
+        };
+
+    $rootScope.$on('$stateChangeStart', 
+    function(event, toState, toParams, fromState, fromParams){
+        console.log(toState.name); 
+        $scope.currentstate = toState.name;
+        if(toState.name == "profile")
+            initialize();
+    });
+
+
+    function initialize() {
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+                myOptions);
+    }
+    google.maps.event.addDomListener(window, "load", initialize);
+
+
 });
                 
 
@@ -82,6 +152,18 @@ app.controller('loginController', function($scope, Auth, $location) {
 });
 
 app.controller('dashController', function($scope, Auth){
+
+    $scope.submitForm = function(isValid) {
+
+        // check to make sure the form is completely valid
+        if (isValid) {
+          alert('our form is amazing');
+        }
+    };
+
+
+
+
     getinfo = function(){
         console.log('hi');
         Auth.getUser()

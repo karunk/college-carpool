@@ -22,7 +22,13 @@
     "angular-fx": "~1.1.0",
     "csshake": "*",
     "ng-input": "~0.0.8",
-    "ngMorph": "angular-morph#~0.1.0"
+    "ngMorph": "angular-morph#~0.1.0",
+    "angular-auto-validate": "~1.19.3",
+    "angular-tooltips": "~1.0.6",
+    "angularjs-geolocation": "~0.1.1",
+    "ngmap": "~1.16.6",
+    "angular-google-staticmaps": "~0.3.0",
+    "angular-snap": "~1.8.5"
   },
   "resolutions": {
     "angular": "1.4.8"

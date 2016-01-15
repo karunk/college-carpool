@@ -1,61 +1,11 @@
-<link rel="stylesheet" type="text/css" href="assets/css/login.css">
-<link rel="stylesheet" type="text/css" href="assets/css/demo.css">
-<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
 
-<!-- 
-{{login.error}}
-ng-model="login.loginData.username"
-ng-model="login.loginData.password" 
-ng-click="login.doLogin()"
--->
- <ng-input theme='nariko' label='Name'></ng-input>
-
-<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <div class="panel panel-info" >
-        <div class="panel-heading">
-            <div class="panel-title">Sign In</div>
-        </div>
-        <div style="padding-top:30px" class="panel-body" >
-            <div ng-if="login.error" id="login-alert" class="alert alert-danger col-sm-12">{{login.error}}</div>
- 
-            <form id="loginform" class="form-horizontal" role="form">
- 
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="login-username" type="text" class="form-control" ng-model="login.loginData.username" value="" placeholder="email">
-                </div>
-
- 
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="login-password" type="password" class="form-control" ng-model="login.loginData.password" placeholder="password">
-                </div>
- 
-                <div style="margin-top:10px" class="form-group">
-                      <div class="col-sm-12 controls">
-                        <a id="btn-login"   class="btn btn-success" ng-click="login.doLogin()">Login  </a>
-                        <a id="btn-fblogin"   class="btn btn-primary" ng-click="loginfb()">Login with Facebook</a>
- 
-                    </div>
-                </div>
- 
-                <div class="form-group">
-                    <div class="col-md-12 control">
-                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                            Don't have an account!
-                            <a ng-href="#/signup">
-                                Sign Up Here
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
- 
- 
-
- 
+<div class="login" >
+  <span class="glyphicon glyphicon-remove close"></span>
+  <form>
+    <p> <label> Username </label> <input ng-model = "home.loginData.username" type="text" /> </p>
+    <p> <label> Password </label> <input ng-model = "home.loginData.password" type="password" /> </p>
+    <p> <button ng-click="home.doLogin()"> LOGIN </button> </p>
+    <alert ng-if="home.error">{{home.error}}</alert>
+  </form>
 </div>
 

@@ -1,7 +1,22 @@
-<!-- form-payment.html -->
-<div class="text-center">
-    <span class="glyphicon glyphicon-heart"></span>
-    <h3>Thanks For Your Money!</h3>
-    
-    <button type="submit" class="btn btn-danger">Submit</button>
+
+<div class="form-group" ng-form name="form1">
+    <label for="college">College</label>
+    <input type="text" class="form-control" name="college" ng-model="formData.college" ng-maxlength="35" required>
+    <span class="error" ng-show="form1.college.$error.maxlength">Too long! college name should be less than 35 chars.</span>
 </div>
+
+<div class="form-group" ng-form name="form1">
+    <label for="rollno">Roll No</label>
+    <input type="text" class="form-control" name="rollno" ng-model="formData.rollno" ng-maxlength="10" required>
+    <span class="error" ng-show="form1.rollno.$error.maxlength">Too long! Roll No should be less than 10 chars.</span>
+</div>
+
+
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+    <button ng-click="submitForm()">SUBMIT</button>
+</div>
+</div>
+
+                
