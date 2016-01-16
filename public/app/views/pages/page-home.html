@@ -1,53 +1,59 @@
 
 <link rel="stylesheet" type="text/css" href="assets/css/login.css">
 <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+<link rel="stylesheet" type="text/css" href="assets/css/codrops/normalize.css">
+<link rel="stylesheet" type="text/css" href="assets/css/codrops/buttons.css">
 
 
-<div id="main">
 
-  <div id="main3" class="shake-slow">
+<div class="container-fluid">
 
-    <div>
-          <h1 ng-if="home.loggedIn == false"><strong>COLLEGE</strong>CARPOOL</h1>
-          <h1 ng-if="home.loggedIn == true"><strong>{{home.college}}</strong>CARPOOL</h1>
-    </div>
+  <div class="row">
 
-    <div>
-          <h1><span>Carpool with your college mates</span></h1> 
-    </div>
+    <div class="col-md-6 full-height-col"> 
 
-  </div>
+      <div class="jumbotron" id="heading">
 
-  <div id="main2">
+          <h1>COLLEGE CARPOOL</h1>
+          <div class="row front_page_text">
+            <text>Discover. Meet. Carpool.</text>
+          </div>
+          
+             <text class="text2">Discovers carpoolers near you who share your same college. <br>Help beat the pollution in Delhi by carpooling.</text>
+          
 
-    <div ng-if="home.loggedIn == false" id="main2">
+      </div>
 
-        <a>
-          <button  ng-morph-modal="example1" class="button button--wayra button--border-thick button--text-upper button--size-s">LOGIN</button>
-        </a>
+      <div class="row">
+
+        <div class="row front_page_button">
+
+            <a>
+              <button  ng-morph-modal="example1" class="button button--tamaya button--border-thick" data-text="LOGIN">Your carpool awaits you!</button>
+            </a>
+
+        </div>
   
-        <a ui-sref="form">  
-          <button class="button button--wayra button--border-thick button--text-upper button--size-s">SIGN UP</button>  
-        </a>
+        <div class="row front_page_button">
+
+            <a ui-sref="form">  
+              <button class="button button--tamaya button--border-thick" data-text="SIGN UP">Welcome abord!</button>  
+            </a>
+
+
+        </div>
+
+
+
+      </div>
 
     </div>
 
-    <div ng-if="home.loggedIn == true" id="main2">
-        <a ui-sref="user">
-          <button class="button button--wayra button--border-thick button--text-upper button--size-s">DASHBOARD</button>
-        </a>
-
-        <a ng-click = "home.doLogout()">  
-          <button  class="button button--wayra button--border-thick button--text-upper button--size-s"><text>LOGOUT</text></button>  
-        </a>
-
+    <div class="col-md-6 full-height-col"> 
+      <div id="map_canvas_front_page" class="map"></div>
     </div>
 
   </div>
 
 </div>
-
-
-        <a>
-          <text  ng-morph-overlay="example2">More about us</text>
-        </a>
+<div id="map_canvas_front_page"></div>

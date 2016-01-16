@@ -7,13 +7,18 @@ angular.module('app.routes', ['ui.router'])
 
 	
      $stateProvider
-        .state('home', {
+        .state('home-high', {
+            url : '/home',
+            templateUrl: 'app/views/pages/page-home.html',
+            controller: 'homeController',
+            controllerAs : 'home'
+        })
+        .state('home-low', {
             url : '/',
             templateUrl: 'app/views/pages/page-home.html',
             controller: 'homeController',
             controllerAs : 'home'
         })
-
         .state('login', {
             url : '/login',
             templateUrl: 'app/views/pages/login.html',
