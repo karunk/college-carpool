@@ -32,9 +32,30 @@ var UserSchema = new Schema({
         required: true
     },
     college: {
-      type: String,
-      required: true
-    }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'College'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
+    carpoolers: [{
+      addedAt: {type: Date, default: Date.now},
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    }],
+    carpool_requests: [{
+      request_sent: {type: Boolean},
+      read: {type: Boolean},
+      addedAt: {type: Date, default: Date.now},
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    }]
+
 });
 
 UserSchema.pre('save', function(callback) {
@@ -53,6 +74,8 @@ UserSchema.pre('save', function(callback) {
       callback();
     });
   });
+
+
 });
 
 UserSchema.methods.comparePassword = function(password) {

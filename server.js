@@ -9,13 +9,14 @@ var bodyParser 		= require('body-parser');
 var app     = express();
 var port    = process.env.PORT || 8080;
 var configDB = require('./config/database.js');
+var nodemailer = require("nodemailer");
 
 
 
 
 
-mongoose.connect(configDB.url);
-
+//mongoose.connect(configDB.url);
+mongoose.connect('mongodb://localhost/collegecarpool');
 
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -45,6 +46,7 @@ app.use('/api', apiRoutes);
 app.get('*', function(req, res){
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
+
 
 
 //SERVER START

@@ -1,0 +1,67 @@
+<link href="assets/css/profile/simple-sidebar.css" rel="stylesheet">
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <text>
+                        {{name}}
+                    </text>
+                </li>
+                <li class="image-li" ng-if="ready == true">
+                    <ng-letter-avatar data={{name}}  fontsize="90" font="sans-serif" avatarborder="true" height="100" width="100"></ng-letter-avatar>
+                </li>
+                <li>
+                    <a ui-sref="user.carpoolmap" ui-sref-active="active">CARPOOL MAP <i class="fa fa-map-o"></i> </a>
+                </li>
+                <li>
+                    <a ui-sref="user.carpoolers" ui-sref-active="active">CARPOOLERS <i class="fa fa-users"></i></a>
+                </li>
+                <li>
+                    <a ui-sref="user.schedule" ui-sref-active="active">SCHEDULE <i class="fa fa-calendar"></i> </a>
+                </li>
+                <li>
+                    <a ui-sref="user.settings" ui-sref-active="active">SETTINGS <i class="fa fa-cogs"></i> </a>
+                </li>
+                <li>
+                    <a>LOGOUT <i class="fa fa-sign-out"></i> </a>
+                </li>
+                <div class="footer">
+                    <notification-icon count='requestCount'>
+                        <a><i class="fa fa-car fa-3x"></i></a>
+                    </notification-icon>
+                     <notification-icon count='requestCount'>
+                         <a> <i class="fa fa-envelope fa-3x"></i></a>
+                    </notification-icon>
+                </div>
+            </ul>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Simple Sidebar</h1>
+
+                        	<div ui-view></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+</body>
+
+</html>

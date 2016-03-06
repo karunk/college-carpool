@@ -1,1 +1,21 @@
-<div id="map_canvas"></div>
+<!-- form-profile.html -->
+
+<h4>LOCATION DETAILS</h4>
+
+
+<div class="form-group">
+    <div class="row">
+    	<div class="col-md-6">
+    		<div id="map_canvas"></div>
+    	</div>
+    	<div class="col-md-6">
+    		<label for="searchTextField" id="label">Where are you located?</label>
+    		<input id="searchTextField" type="text" size="50" placeholder="Enter your location here or click on the map" autocomplete="on"/>
+            <div ng-if="$parent.streetaddress_ok">
+                <h4>{{ formData.streetaddress }}</h4>
+            </div>
+    	</div>
+    </div>
+
+
+

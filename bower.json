@@ -28,7 +28,12 @@
     "angularjs-geolocation": "~0.1.1",
     "ngmap": "~1.16.6",
     "angular-google-staticmaps": "~0.3.0",
-    "angular-snap": "~1.8.5"
+    "angular-snap": "~1.8.5",
+    "angular-recaptcha": "~2.2.5",
+    "AngularJS-Toaster": "angularjs-toaster#~1.0.0",
+    "angular-notification-icons": "~0.4.3",
+    "angular-google-places-map": "~1.1.10",
+    "angular-no-captcha": "~0.6.0"
   },
   "resolutions": {
     "angular": "1.4.8"

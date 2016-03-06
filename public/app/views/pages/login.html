@@ -5,6 +5,7 @@
     <p> <label> Username </label> <input ng-model = "home.loginData.username" type="text" /> </p>
     <p> <label> Password </label> <input ng-model = "home.loginData.password" type="password" /> </p>
     <p> <button ng-click="home.doLogin()"> LOGIN </button> </p>
+                 <button class="button button--winona button--border-thin button--round-s" data-text="Open Project"><span>Open Project</span></button>
     <alert ng-if="home.error">{{home.error}}</alert>
   </form>
 </div>

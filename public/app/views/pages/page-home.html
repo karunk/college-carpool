@@ -1,8 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="assets/css/login.css">
 <link rel="stylesheet" type="text/css" href="assets/css/home.css">
-<link rel="stylesheet" type="text/css" href="assets/css/codrops/normalize.css">
-<link rel="stylesheet" type="text/css" href="assets/css/codrops/buttons.css">
 
 
 
@@ -14,13 +11,15 @@
 
       <div class="jumbotron" id="heading">
 
-          <h1>COLLEGE CARPOOL</h1>
+          <h1>{{home.college}}<br> CARPOOL</h1>
           <div class="row front_page_text">
-            <text>Discover. Meet. Carpool.</text>
+            <text ng-if="home.loggedIn == false">Discover. Meet. Carpool.</text>
+            <text ng-if="home.loggedIn == true">Hi {{home.firstname}}!</text>
           </div>
           
-             <text class="text2">Discovers carpoolers near you who share your same college. <br>Help beat the pollution in Delhi by carpooling.</text>
-          
+            <text ng-if="home.loggedIn == false" class="text2">Discovers carpoolers near you who share your same college. <br>Help beat the pollution in Delhi by carpooling.</text>
+            <text ng-if="home.loggedIn == true" class="text2">Visit your dashboard to find carpoolers.</text>
+                      
 
       </div>
 
@@ -28,21 +27,25 @@
 
         <div class="row front_page_button">
 
-            <a>
+            <a ng-if="home.loggedIn == false">
               <button  ng-morph-modal="example1" class="button button--tamaya button--border-thick" data-text="LOGIN">Your carpool awaits you!</button>
+            </a>
+            <a ng-if="home.loggedIn == true" ui-sref="user">
+              <button class="button button--tamaya button--border-thick" data-text="DASHBOARD">Find your carpoolers.</button>
             </a>
 
         </div>
   
         <div class="row front_page_button">
 
-            <a ui-sref="form">  
+            <a ui-sref="form.payment" ng-if="home.loggedIn == false">  
               <button class="button button--tamaya button--border-thick" data-text="SIGN UP">Welcome abord!</button>  
             </a>
-
+            <a ng-if="home.loggedIn == true">  
+              <button ng-click="home.doLogout()" class="button button--tamaya button--border-thick" data-text="LOG OUT">Goodbye!</button>  
+            </a>
 
         </div>
-
 
 
       </div>
@@ -50,10 +53,9 @@
     </div>
 
     <div class="col-md-6 full-height-col"> 
-      <div id="map_canvas_front_page" class="map"></div>
+      <div id="map_canvas_front_page" class="map"><div id="base"></div></div>
     </div>
 
   </div>
 
 </div>
-<div id="map_canvas_front_page"></div>

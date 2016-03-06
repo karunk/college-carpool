@@ -1,36 +1,58 @@
-<link rel="stylesheet" type="text/css" href="assets/css/login.css">
-<link rel="stylesheet" type="text/css" href="assets/css/home.css">
-
-<div class="row">
-<div class="col-sm-8 col-sm-offset-2">
+<link rel="stylesheet" type="text/css" href="assets/css/form.css">
 
   <div id="form-container">
-  
-      <div class="page-header text-center">
-          <!-- the links to our nested states using relative paths -->
-          <!-- add the active class if the state matches our ui-sref -->
-          <div id="status-buttons" class="text-center">
-              <a ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</a>
-              <a ui-sref-active="active" ui-sref=".interests"><span>2</span> Interests</a>
-              <a ui-sref-active="active" ui-sref=".payment"><span>3</span> Payment</a>
-          </div>
-      </div>
-      
-      <!-- use ng-submit to catch the form submission and use our Angular function -->
-      <form id="signup-form" ng-submit="processForm()">
-          <!-- our nested state views will be injected here -->
-          <div id="form-views" ui-view></div>
-      </form>
-  
-  </div>
-  
-  <!-- show our formData as it is being typed -->
-  <pre>
-    {{ mapExists }}
-  </pre>
 
+      <div class="flexbox">
+
+        <div class="col">
+          <h1>Let's sign you up!</h1>
+        </div>
+
+        <div class="col navg">
+
+            <div class="block">
+            <a ui-sref-active="active" ui-sref=".payment">
+              <i class="hovicon effect-7 sub-b">
+                  1
+              </i>
+            </a>
+            </div>
+
+            <div class="block">
+            <a ui-sref-active="active" ui-sref=".interests">
+              <i class="hovicon effect-7 sub-b">
+                  2
+              </i>
+             </a>
+            </div>
+
+            <div class="block">
+             <a ui-sref-active="active" ui-sref=".profile">
+              <i class="hovicon effect-7 sub-b">
+                  3
+              </i>
+              </a>
+            </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form id="signup-form" ng-submit="processForm()">
+            <!-- our nested state views will be injected here -->
+            <div id="form-views" ui-view></div>
+        </form>
+      </div>
+        <div class="row">
+  <pre>
+        <text>{{ formData }}</text>
+</pre>
 </div>
-</div>
+  </div>
+
 
 
 

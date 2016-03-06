@@ -25,7 +25,12 @@ angular.module('app.routes', ['ui.router'])
             controller: 'loginController',
             controllerAs : 'login'
         })
-
+        .state('experiment', {
+            url: '/experiment',
+            templateUrl: 'app/views/pages/experiment/index.html',
+            controller: 'experimentController',
+            controllerAs: 'exp'
+        })
         .state('form', {
             url: '/form',
             templateUrl: 'app/views/pages/signup/form.html',
@@ -49,18 +54,30 @@ angular.module('app.routes', ['ui.router'])
             templateUrl: 'app/views/pages/signup/form-payment.html'
         })
 
-        .state('verify', {
-            url: '/verify',
-            templateUrl: 'app/views/pages/signup/form-verify.html',
-            controller: 'homeController'
-        })
+
 
         .state('user', {
             url : '/user',
-            templateUrl: 'app/views/pages/dash/dashboard.html',
-            controller: 'MapCtrl',
-            controllerAs : 'login'
-        });
-
+            templateUrl: 'app/views/pages/profile/index.html',
+            controller: 'dashController',
+            controllerAs : 'dash'
+        })
+        .state('user.carpoolmap', {
+            url : '/map',
+            templateUrl: 'app/views/pages/profile/map.html'
+        })
+        .state('user.settings', {
+            url : '/settings',
+            templateUrl: 'app/views/pages/profile/settings.html'
+        })
+        .state('user.carpoolers', {
+            url : '/carpoolers',
+            templateUrl: 'app/views/pages/profile/carpoolers.html'
+        })
+        .state('user.schedule', {
+            url : '/schedule',
+            templateUrl: 'app/views/pages/profile/schedule.html'
+        })
+        
 	$locationProvider.html5Mode(true).hashPrefix('!')
 });

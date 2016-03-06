@@ -1,0 +1,37 @@
+			
+	<link rel="stylesheet" type="text/css" href="assets/css/experiment/123/css/demo.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/experiment/123/css/icons.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/experiment/123/css/style2.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/experiment/123/css/normalize.css">
+
+<div class="container">
+			<header class="codrops-header">
+				<h1>Animated Border Menus <span>Inspired by CreativeDash's <a href="http://creativeda.sh/sandbox/bounce_menu/">bounce menu</a></h1>
+				<p class="codrops-links"><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/CreativeLoadingEffects/"><span>Previous Demo</span></a>
+				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16556"><span>Back to the Codrops Article</span></a></span></p>
+				<nav class="codrops-demos">
+					<a href="index.html">Demo 1</a>
+					<a class="current-demo" href="index2.html">Demo 2</a>
+					<a href="index3.html">Demo 3</a>
+					<a href="index4.html">Demo 4</a>
+					<a href="index5.html">Demo 5</a>
+					<a href="index6.html">Demo 6</a>
+				</nav>
+				<div class="codrops-related">
+					If you enjoyed this menu, you might also like:<br />
+					<a href="http://tympanus.net/Development/MultiLevelPushMenu/">Multi-Level Push Menu</a><br/>
+					<a href="http://tympanus.net/Development/SidebarTransitions/">Transitions for Off-canvas Navigations</a>
+				</div>
+			</header>
+			<nav id="bt-menu" ng-class="{'bt-menu-open': isOpen, 'bt-menu-close': !isOpen}" class="bt-menu">
+				<a href="#" ng-click="toggle()" class="bt-menu-trigger"><span>Menu</span></a>
+				<ul>
+					<li><a href="#" class="bt-icon icon-zoom">Zoom</a></li>
+					<li><a href="#" class="bt-icon icon-refresh">Refresh</a></li>
+					<li><a href="#" class="bt-icon icon-lock">Lock</a></li>
+					<li><a href="#" class="bt-icon icon-speaker">Sound</a></li>
+					<li><a href="#" class="bt-icon icon-star">Favorite</a></li>
+				</ul>
+				<div ng-if="isOpen" class="bt-overlay" ng-click="close()"></div>
+			</nav>
+		</div><!-- /container -->

@@ -6,13 +6,9 @@
 button {
   width: 250px;
   height: 50px;
-  color: #F0F1F0;
-  font-size: 0.8em;
-  background: #1BBA9A;
   outline: none;
   cursor: pointer;
   border: none;
-  margin-top: 10em;
 }
 
 /* close icon */
@@ -91,16 +87,4 @@ form input {
 }
 form input:focus {
   outline: 0;
-}
-form button {
-  display: block;
-  margin-top: 30px;
-  padding: 1em;
-  width: 100%;
-  border: none;
-  background: #F0F1F0;
-  color: #7986cb;
-  letter-spacing: 1px;
-  line-height: 0;
-  font-size: 17px;
 }

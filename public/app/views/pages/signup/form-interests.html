@@ -1,7 +1,60 @@
-<snap-drawer>
-  Drawer Content
-</snap-drawer>
+<!-- form-interests.html -->
+<h4>USER INFORMATION</h4>
+<div class="form-group">
+<div class="row">
 
-       
+    <div class="col-md-4">
+        <label for="firstname" id="label">First Name:</label>
+        <input type="text" class="form-control" id="firstname" ng-model="formData.name.first">
+    </div>
+    <div class="col-md-4">
+        <label for="lastname" id="label">Last Name:</label>
+        <input type="text" class="form-control" id="lastname" ng-model="formData.name.last">
+    </div>
+    <div class="col-md-4">
+        <label for="email" id="label">Email:</label>
+        <input type="email" class="form-control" id="email" ng-model="formData.contact.email">
+    </div>
 
-  <button snap-toggle>Toggle Drawer</button>
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+        <label for="mobile" id="label">Mobile No:</label>
+        <input type="number" class="form-control" id="mobile" ng-model="formData.contact.mobile">
+    </div>
+    <div class="col-md-4">
+        <label for="college" id="label">College:</label>
+        <input type="text" class="form-control" id="college" ng-model="formData.college.name">
+    </div>
+    <div class="col-md-4">
+        <label for="rollno" id="label">College Roll No:</label>
+        <input type="text" class="form-control" id="rollno" ng-model="formData.college.rollno">
+    </div>
+
+</div>
+<div class="row">
+        <div class="col-md-6">
+        <div class="radio">
+            <label id="label">
+                <input type="radio" ng-model="formData.type" value="vehicle" checked>
+                    I own a private vehicle.
+            </label>
+        </div>
+        <div class="radio">
+            <label id="label">
+                <input type="radio" ng-model="formData.type" value="no-vehicle">
+                I do not own a private vehicle
+            </label>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="form-group row">
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="form.payment" class="btn btn-block btn-info">
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>

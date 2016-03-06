@@ -22,12 +22,7 @@
 {
   min-height: 100%;
 }
-.full-height-col
-{
-  min-height: 100vh; 
-  padding: 0px;
-  margin: 0px; 
-}
+
 #heading
 {
   background-color: white;
@@ -47,4 +42,12 @@
 .text2
 {
   font-size: 17px;
+}
+#base
+{
+  height: 100%;
+  width: 110%;
+  background-color: black;
+  padding: 0px;
+  margin: 0px;
 }
