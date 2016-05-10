@@ -14,7 +14,8 @@ var app = angular.module('familiar', ['app.routes',
                             'angular-notification-icons',
                             'ngPlacesMap',
                             'noCAPTCHA',
-                            'vModal'
+                            'vModal',
+                            'ngProgress'
 							])
 
 
