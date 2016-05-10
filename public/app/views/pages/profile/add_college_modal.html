@@ -1,0 +1,33 @@
+<link rel="stylesheet" type="text/css" href="assets/css/submit-modal.css">
+
+<v-modal class="vModal--default" onclose="myModalCtrl.close()">
+  <v-dialog heading="My modal" medium middle>
+    <v-close label="Close"></v-close>
+    	<div class="col-md-12">
+    		<h3>{{stringValue1}}</h3>
+         
+                    <div class="col-md-12 rowx">
+                        <div class="x1">
+                        <label for="searchTextField" id="label">Address of College</label>
+                        <div class="form-check">
+                            <input type="text" class="form-control" id="searchTextField" placeholder="Enter your location here or click on the map" autocomplete="on" ng-model = "formData.streetaddress" required>
+                        </div>
+                        </div>
+
+                        <div class="x1">
+                        <label for="name" id="label">Name of College</label>
+                        <div class="form-check">
+                            <input type="text" class="form-control" id="name" placeholder="Enter college name" ng-model = "formData.collegename" required>
+                        </div>
+                        </div>
+
+                    </div>    
+                    <div class="col-md-3 col-md-offset-3">
+                            <button ng-click="submit()">OK</button>
+                    </div>
+                    
+    		
+    	</div>
+        <text>{{formData}}</text>
+  </v-dialog>
+</v-modal>

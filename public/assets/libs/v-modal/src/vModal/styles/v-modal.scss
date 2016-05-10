@@ -1,0 +1,21 @@
+/***************************************
+  vModal
+ ***************************************/
+
+
+/**
+ * Example HTML:
+ *
+  <v-modal class="vModal--default" close="[ctrl method]">
+    <v-dialog role="dialog" fit middle>
+      <button aria-label="close" v-close></button>
+      [content]
+    </v-dialog>
+  </v-modal>
+ */
+
+
+@import 'settings';
+@import 'base';
+@import 'theme';
+

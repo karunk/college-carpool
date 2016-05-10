@@ -1,21 +1,66 @@
 <!-- form-profile.html -->
 
-<h4>LOCATION DETAILS</h4>
 
 
-<div class="form-group">
+<div class="form-group col-md-offset-1">
+<h4>USER DETAILS</h4>
     <div class="row">
     	<div class="col-md-6">
     		<div id="map_canvas"></div>
     	</div>
     	<div class="col-md-6">
-    		<label for="searchTextField" id="label">Where are you located?</label>
-    		<input id="searchTextField" type="text" size="50" placeholder="Enter your location here or click on the map" autocomplete="on"/>
-            <div ng-if="$parent.streetaddress_ok">
-                <h4>{{ formData.streetaddress }}</h4>
+            
+            <div>
+                <label for="searchTextField" id="label">Where are you located?</label>
+                <div class="form-check">
+                    <input type="text" class="form-control" id="searchTextField" placeholder="Enter your location here or click on the map" autocomplete="on" ng-model = "formData.streetaddress" required>
+                    <i class="fa fa-check fa-2x tick" ng-if="formData.streetaddress"></i>
+                </div>
+            </div>    
+            <div>           
+                <label for="college" id="label">College:</label>
+                <div class="form-check">
+                    <select ng-model="formData.college.name" class="form-control" id="college" ng-options="x for x in college_names">
+                    </select>
+                    <i class="fa fa-check fa-2x tick" ng-if="formData.college.name"></i>
+                </div>
             </div>
+            <div>           
+                <label for="email" id="label">Email:{{email_error}}</label>
+                <div class="form-check">
+                    <input type="email" class="form-control" id="email" ng-model="formData.contact.email" ng-change="email_validation()" required>
+                    <i class="fa fa-check fa-2x tick" ng-if="check_email==-1"></i>
+                    <i class="fa fa-exclamation fa-2x tick" ng-if="check_email==1"></i>
+
+                </div>
+            </div>
+            <div>           
+                <label for="username" id="label">Username:{{username_error}}</label>
+                <div class="form-check">
+                    <input type="text" class="form-control" id="username" ng-model="formData.username" ng-change="username_validation()" required>
+                    <i class="fa fa-check fa-2x tick" ng-if="check_username==-1"></i>
+                    <i class="fa fa-exclamation fa-2x tick" ng-if="check_username==1"></i>
+
+                </div>
+            </div>
+            <div>           
+                <label for="mobile" id="label">Mobile No:{{mobile_error}}</label>
+                <div class="form-check">
+                    <input type="text" class="form-control" id="mobile" ng-model="formData.contact.mobile" ng-change="mobile_validation()" required>
+                    <i class="fa fa-check fa-2x tick" ng-if="check_mobile==-1"></i>
+                    <i class="fa fa-exclamation fa-2x tick" ng-if="check_mobile==1"></i>
+
+                </div>
+            </div>
+
+                <div class="box bg-1" ng-if="check_mobile == -1 && check_username == -1 && check_email == -1 && formData.college.name">
+                <a ui-sref="form.interests">
+                    <button class="button button--winona button--border-thick" data-text="NEXT"><span>NEXT</span></button>
+                </a>
+                </div>
     	</div>
     </div>
+</div>
 
 
 

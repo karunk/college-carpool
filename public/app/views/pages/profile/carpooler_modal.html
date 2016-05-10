@@ -1,0 +1,34 @@
+<link rel="stylesheet" type="text/css" href="assets/css/profile/carpool-modal.css">
+<v-modal class="vModal--default" onclose="myModalCtrl.close()">
+  <v-dialog heading="My modal" medium middle>
+    <v-close label="Close"></v-close>
+    	<div class = "modal_container">
+	    	<div class="modal_header bottom">
+	    		<ng-letter-avatar data={{clicked_marker_data.firstname}}  fontsize="90" font="sans-serif" avatarborder="true" height="100" width="100"></ng-letter-avatar>
+	    		<div class="modal_text_header">
+	    			<h1>{{clicked_marker_data.firstname}} {{clicked_marker_data.lastname}}</h1>
+	    			<div id="modal_sub_heading">{{clicked_marker_data.collegename}}</div>
+	    			<div id="modal_sub_sub_heading"><i class="fa fa-envelope-o"></i><text>{{clicked_marker_data.email}}</text></div>
+	    		</div>
+	    	</div>
+	    	<div id="modal_info">
+
+				<div class="bottom">
+					<div class="box-content right">Rich Media Ad Production</div>
+					<div class="box-content right">Web Design & Development</div>
+					<div class="box-content right">Mobile Apps Development</div>
+					<div class="box-content">Creative Design</div>
+				</div>
+				<div>
+					<div class="box-content right">Web Analytics</div>
+					<div class="box-content right">Search Engine Marketing</div>
+					<div class="box-content right">Social Media</div>
+					<div class="box-content">Quality Assurance</div>
+				</div>
+
+	    		<button><i class="fa fa-user-plus fa-lg"></i><text>SEND CARPOOL REQUEST</text></button>
+	    		
+	    	</div>
+	    </div>
+  </v-dialog>
+</v-modal>

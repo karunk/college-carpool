@@ -1,60 +1,75 @@
-<!-- form-interests.html -->
-<h4>USER INFORMATION</h4>
-<div class="form-group">
-<div class="row">
-
-    <div class="col-md-4">
-        <label for="firstname" id="label">First Name:</label>
-        <input type="text" class="form-control" id="firstname" ng-model="formData.name.first">
-    </div>
-    <div class="col-md-4">
-        <label for="lastname" id="label">Last Name:</label>
-        <input type="text" class="form-control" id="lastname" ng-model="formData.name.last">
-    </div>
-    <div class="col-md-4">
-        <label for="email" id="label">Email:</label>
-        <input type="email" class="form-control" id="email" ng-model="formData.contact.email">
-    </div>
-
-</div>
-<div class="row">
-
-    <div class="col-md-4">
-        <label for="mobile" id="label">Mobile No:</label>
-        <input type="number" class="form-control" id="mobile" ng-model="formData.contact.mobile">
-    </div>
-    <div class="col-md-4">
-        <label for="college" id="label">College:</label>
-        <input type="text" class="form-control" id="college" ng-model="formData.college.name">
-    </div>
-    <div class="col-md-4">
-        <label for="rollno" id="label">College Roll No:</label>
-        <input type="text" class="form-control" id="rollno" ng-model="formData.college.rollno">
-    </div>
-
-</div>
-<div class="row">
-        <div class="col-md-6">
-        <div class="radio">
-            <label id="label">
-                <input type="radio" ng-model="formData.type" value="vehicle" checked>
-                    I own a private vehicle.
-            </label>
+<!-- form-profile.html -->
+<div class="form-group col-md-offset-1">
+    <h4>MORE DETAILS</h4>
+        <div class="row">
+            <div class="col-md-5">    
+                <div>           
+                    <label for="firstname" id="label">Firstname:</label>
+                    <div class="form-check">
+                        <input type="text" class="form-control" id="firstname" ng-model="formData.name.first"  ng-change="name_validation()" required>
+                    </div>
+                </div>
+                <div>           
+                    <label for="lastname" id="label">Lastname:</label>
+                    <div class="form-check">
+                        <input type="text" class="form-control" id="lastname" ng-model="formData.name.last"  >
+                    </div>
+                </div>  
+               <div>           
+                    <label for="rollno" id="label">College ID:{{rollno_error}}</label>
+                    <div class="form-check">
+                        <input type="text" class="form-control" id="rollno" ng-model="formData.college.rollno"  ng-change="rollno_validation()" required>                  
+                        <i class="fa fa-check fa-2x tick" ng-if="check_rollno==-1"></i>
+                        <i class="fa fa-exclamation fa-2x tick" ng-if="check_rollno==1"></i>
+                    </div>
+                </div>  
+                <div>
+                    <label for="password" id="label">Password:{{password_error}}</label>
+                    <div class="form-check">
+                        <input type="password" class="form-control" id="lastname" ng-model="formData.password" ng-change="password_validation()" required>
+                        <i class="fa fa-check fa-2x tick" ng-if="check_password==-1"></i>
+                        <i class="fa fa-exclamation fa-2x tick" ng-if="check_password==1"></i>
+                    </div>
+                </div>           
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                
+            <div class="radio">
+                <label id="label">
+                    <input type="radio" ng-model="formData.type" value="1" checked>
+                        I own a private vehicle.
+                </label>
+            </div>
+            <div class="radio">
+                <label id="label">
+                    <input type="radio" ng-model="formData.type" value="0">
+                    I do not own a private vehicle
+                </label>
+            </div>   
+                <div ng-if="formData.type == 1">           
+                    <label for="college" id="label">Your vehicle capacity:</label>
+                    <div class="form-check col-md-3">
+                        <select ng-model="formData.vcapacity" class="form-control" id="college" ng-options="x for x in vehicle_capacity" ng-change="type_validation()">
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="radio">
-            <label id="label">
-                <input type="radio" ng-model="formData.type" value="no-vehicle">
-                I do not own a private vehicle
-            </label>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8">
+                 <no-captcha
+                    g-recaptcha-response="formData.CaptchaControl"
+                    theme='light'
+                    control="CaptchaControl"
+                    site-key="6Ler6xgTAAAAAOTg3ammRxsjM4yCMfRqEPSF1yta"
+                    ng-if="final_check._1">
+                </no-captcha>
+                <div class="box bg-1" >
+                <button class="button button--winona button--border-thick" data-text="SUBMIT" ng-click="submit()"><span>SUBMIT</span></button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
 </div>
 
-<div class="form-group row">
-<div class="col-xs-6 col-xs-offset-3">
-    <a ui-sref="form.payment" class="btn btn-block btn-info">
-    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
-</div>
-</div>
+

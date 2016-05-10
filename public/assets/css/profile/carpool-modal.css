@@ -1,0 +1,80 @@
+.modal_header
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	width: 100%;
+}
+.modal_text_header
+{
+	margin-left: 30px;
+	display: flex;
+	flex-direction: column;
+
+	
+}
+.modal_text_header > h1
+{
+	font-family: 'Oswald', sans-serif;
+	text-transform: uppercase;
+	margin-top: 2%;
+	padding: 0px;
+	margin-bottom: 0%;
+}
+#modal_sub_heading
+{
+	font-family: 'Oswald', sans-serif;
+	margin-top: 5px;
+	padding: 0px;
+	font-size: 100%;
+}
+
+button text
+{
+	font-family: 'Oswald', sans-serif;
+	margin-left: 10px;
+	font-size: 1.3em;
+}
+
+button
+{
+	margin-top: 30px;
+	background-color: #999d99;
+	color: white;
+}
+button:hover{
+	background-color: #343B34;
+	color: white;
+	transition: background .2s ease-in
+}
+
+.modal_container
+{
+	padding: 10px;
+}
+.box-content {
+	display: inline-block;
+	width: 200px;
+    padding: 10px;
+}
+
+.bottom {
+	border-bottom: 1px solid #ccc;
+}
+
+.right {
+	border-right: 1px solid #ccc;
+}
+#modal_sub_sub_heading
+{
+	margin-top: 10px; 
+}
+#modal_sub_sub_heading text
+{
+	font-size: 90%;
+	margin-left: 4px;
+}
+.modal_header > img
+{
+	margin-bottom: 10px;
+}

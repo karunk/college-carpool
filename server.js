@@ -7,7 +7,7 @@ var cookieParser 	= require('cookie-parser');
 var bodyParser 		= require('body-parser');
 
 var app     = express();
-var port    = process.env.PORT || 8080;
+var port    = process.env.PORT || 8000;
 var configDB = require('./config/database.js');
 var nodemailer = require("nodemailer");
 
@@ -15,8 +15,8 @@ var nodemailer = require("nodemailer");
 
 
 
-//mongoose.connect(configDB.url);
-mongoose.connect('mongodb://localhost/collegecarpool');
+mongoose.connect(configDB.url);
+//mongoose.connect('mongodb://localhost/collegecarpool');
 
 app.use(morgan('dev'));
 app.use(cookieParser());

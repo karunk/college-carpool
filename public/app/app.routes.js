@@ -25,16 +25,17 @@ angular.module('app.routes', ['ui.router'])
             controller: 'loginController',
             controllerAs : 'login'
         })
-        .state('experiment', {
-            url: '/experiment',
-            templateUrl: 'app/views/pages/experiment/index.html',
-            controller: 'experimentController',
-            controllerAs: 'exp'
+        .state('verify', {
+            url: '/verify/{verifyId}',
+            templateUrl: 'app/views/pages/signup/verify.html',
+            controller: 'verifyController',
+            controllerAs: 'verify'
         })
         .state('form', {
             url: '/form',
             templateUrl: 'app/views/pages/signup/form.html',
-            controller: 'formController'
+            controller: 'formController',
+            controllerAs: 'form'
         })
 
         .state('form.profile', {
@@ -48,14 +49,6 @@ angular.module('app.routes', ['ui.router'])
             templateUrl: 'app/views/pages/signup/form-interests.html'
         })
         
-        // url will be /form/payment
-        .state('form.payment', {
-            url: '/payment',
-            templateUrl: 'app/views/pages/signup/form-payment.html'
-        })
-
-
-
         .state('user', {
             url : '/user',
             templateUrl: 'app/views/pages/profile/index.html',
@@ -78,6 +71,6 @@ angular.module('app.routes', ['ui.router'])
             url : '/schedule',
             templateUrl: 'app/views/pages/profile/schedule.html'
         })
-        
+
 	$locationProvider.html5Mode(true).hashPrefix('!')
 });

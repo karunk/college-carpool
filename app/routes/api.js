@@ -15,6 +15,108 @@ module.exports = function(app, express, passport){
     .get(function(req, res) {
             res.json('welcome to the api');
         });
+    apiRouter.route('/college')
+    //get list of all colleges
+    .get(function(req, res){
+        College.find({}, function(err, college){
+            if(err)
+                res.send('Error getting list of colleges.')
+            else
+                res.send(college);
+        }).select('collegename');
+    });
+    apiRouter.route('/isthere/email')
+    .post(function(req, res){
+        User.find({email: req.body.email}, function(err, data){
+            console.log(req.body.email);
+            if(data.length){
+                res.json({
+                    success: false
+                });
+            }
+            else{
+                res.json({
+                    success: true
+                });
+            }
+        })
+
+    });
+    apiRouter.route('/isthere/username')
+    .post(function(req, res){
+        User.find({username: req.body.username}, function(err, data){
+            console.log(req.body.username);
+            if(data.length){
+                res.json({
+                    success: false
+                });
+            }
+            else{
+                res.json({
+                    success: true
+                });
+            }
+        })
+
+    });
+    apiRouter.route('/isthere/mobile')
+    .post(function(req, res){
+        User.find({mobile: req.body.mobile}, function(err, data){
+            if(data.length){
+                res.json({
+                    success: false
+                });
+            }
+            else{
+                res.json({
+                    success: true
+                });
+            }
+        })
+
+    });
+    apiRouter.route('/isthere/college-rollno')
+    .post(function(req, res){
+        console.log(req,res);
+        User.find({rollno: req.body.rollno,
+                   college: req.body.college_id}, function(err, data){
+            if(data.length){
+                res.json({
+                    success: false
+                });
+            }
+            else{
+                res.json({
+                    success: true
+                });
+            }
+        })
+
+    });
+    apiRouter.route('/find-geo-near')
+    .post(function(req, res){
+        var distance = 1000 / 6371;
+
+        var query = User.find({geo: {
+            $near: [
+                req.body.lat,
+                req.body.lng
+            ],
+            $maxDistance: distance
+        }});
+        query.exec(function(err, result){
+            if(err){
+                console.log(err);
+                throw err;
+            }
+            if(!result){
+                res.json({});
+            } else{
+                console.log('Found :'+ result);
+                res.json(result);
+            }
+        })
+    });
 //---------------------------------------------------------------------------------------------------
 
     apiRouter.route('/user-registeration') 
@@ -28,14 +130,20 @@ module.exports = function(app, express, passport){
                 message: 'No such college found'
             })
             else{
-                    user.college = college._id;
-                    user.username   = req.body.username;
-                    user.password   = req.body.password;
-                    user.email      = req.body.email;
-                    user.mobile     = req.body.mobile;
-                    user.firstname  = req.body.firstname;
-                    user.lastname   = req.body.lastname;
-                    user.rollno     = req.body.rollno;  
+                    console.log(req.body);
+                    // get coordinates [ <longitude> , <latitude> ]
+                    user.college        = college._id;
+                    user.username       = req.body.username;
+                    user.password       = req.body.password;
+                    user.email          = req.body.email;
+                    user.mobile         = req.body.mobile;
+                    user.firstname      = req.body.firstname;
+                    user.lastname       = req.body.lastname;
+                    user.rollno         = req.body.rollno; 
+                    user.geo            = [req.body.lng, req.body.lat]; 
+                    user.vehicleCapacity= req.body.vehicleCapacity;
+                    user.isVehicleOwner = req.body.isVehicleOwner;
+
                     user.save(function(err) {
                         if(err)
                             return res.send(err);
@@ -44,11 +152,30 @@ module.exports = function(app, express, passport){
                             college.students.push(user);
                             college.save(function(err){
                                 if(err)
-                                    return res.send(err);
+                                    return res.json({
+                                        success: false,
+                                        error: err
+                                    });
                                 else
                                 {
-                                    console.log(college,'hello');
-                                    return res.send('done');
+                                    var token = jwt.sign(
+                                        {
+                                           
+                                            username : user.username,
+                                            email    : user.email,
+                                            firstname: user.firstname,
+                                        }, 
+                                        superSecret, 
+
+                                        {
+                                            expiresInMinutes: 1440 // expires in 24 hours
+                                        } 
+                                    );
+                                    res.json({
+                                        success: true,
+                                        message: 'Verification token',
+                                        token: token
+                                    });
                                 }
                             });
                         }
@@ -66,7 +193,7 @@ module.exports = function(app, express, passport){
     .post(function(req, res) {
         User.findOne({
             username: req.body.username
-        }).select('username password email college firstname lastname').exec(function(err, user) {
+        }).select('username password email college firstname lastname isVerified _id').exec(function(err, user) {
 
             if (err) throw err;
             
@@ -89,37 +216,138 @@ module.exports = function(app, express, passport){
                 else {
                         // if user is found and password is right
                         // create a token
-                        var token = jwt.sign(
-                            {
-                               
-                                username: user.username,
-                                email: user.email,
-                                college: user.college,
-                                firstname: user.firstname,
-                                lastname: user.lastname
-                            }, 
+                                if(user.isVerified){
+                                var token = jwt.sign(
+                                    {
+                                       
+                                        username: user.username,
+                                        email: user.email,
+                                        college: user.college,
+                                        firstname: user.firstname,
+                                        lastname: user.lastname,
+                                        user_id: user._id
+                                    }, 
 
-                            superSecret, 
+                                    superSecret, 
 
-                            {
-                                expiresInMinutes: 1440 // expires in 24 hours
-                            } 
-                        );
+                                    {
+                                        expiresInMinutes: 1440 // expires in 24 hours
+                                    } 
+                                );
 
-                    // return the information including token as JSON
-                    res.json({
-                        success: true,
-                        message: 'Enjoy your token!',
-                        token: token
-                    });
+                            // return the information including token as JSON
+                            res.json({
+                                success: true,
+                                message: 'Enjoy your token!',
+                                token: token
+                            });
+                        }
+                        else
+                            res.json({
+                                success: false,
+                                message: 'Account has not been verified yet.'
+                            })
                 }   
         }
       });
     });
 
 
-//---------END OF AUTHENTICATION BLOCK-----------------------------------------------------------------------------------
+    // api endpoint to get user information
+    apiRouter.post('/sendemail', function(req, res) {
+        console.log(req.body);
+        var transporter = nodemailer.createTransport({
+            service: 'hotmail',
+            auth: {
+                user: 'karunk@live.com',
+                pass: 'rebelheart1989'
+            }
+        });
 
+        var emailInfo = {
+            from: 'College Carpool <karunk@live.com>', // sender address
+            to: req.body.recipient, // comma delimited list of receivers
+            subject: req.body.subject,
+            html: req.body.emailhtml
+            };
+
+
+        // send mail with defined transport object
+        transporter.sendMail(emailInfo, function(error, info){
+            if(error){
+                console.log(error);
+                return res.json({ success: false, message: info }); 
+            }else{
+                console.log('Message sent: ' + info.response);
+                console.log(req);
+                return res.json({ success: true, message: info.response });  
+
+            }
+        });
+
+    });
+
+    apiRouter.post('/verify', function(req, res){
+        if(req.body.token){
+            jwt.verify(req.body.token, superSecret, function(err, decoded){
+                if(err){
+                    return res.json({ success: false, message: 'Token expired.' });  
+                } else{
+                    User.findOne({ username : decoded.username}, function(error, user){
+                        if(error){
+                            return res.json({ success: false, message: 'User not found!' }); 
+                        } else {
+                            console.log(user);
+                            user.isVerified = true;
+                            user.save(function(error){
+                                if(error) res.json({ success: false, message: 'Error verifying user.'});
+                                else res.json({success: true, message: 'Verification complete! Please login again.', data: user});
+                            })
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+//---------END OF AUTHENTICATION BLOCK-----------------------------------------------------------------------------------
+    apiRouter.route('/create-college') //-COLLEGE-----------------------------------------------------------------------
+    
+
+    //Adding a new college to the database
+    .post(function(req, res) {
+        console.log(req.body);
+       College.findOne({collegename: req.body.collegename}, function(error, college){
+        console.log('$',college);
+        if(error) {
+            res.send(error);
+            console.log('here');
+        }
+        else
+            {
+                if(college == null)
+                    {
+                        var college = new College();
+                        college.collegename = req.body.collegename;
+                        college.geo        = [req.body.lng, req.body.lat]; 
+                        college.save(function(err){
+                            if(err) return res.send(err);
+                            else res.send(college);
+                        });
+                    }
+                else
+                    res.send(college);
+            }
+       }); 
+    })
+    .get(function(req, res){
+        College.find({}, function(error, colleges){
+            if(error)
+                res.send(error);
+            else
+                res.send(colleges);
+        })
+    });
 
 //------MIDDLEWARE TO CHECK TOKENS ---------------------------------------------------------------------------------------
 
@@ -128,7 +356,7 @@ module.exports = function(app, express, passport){
         console.log('Somebody just came to our app!');
 
         // check header or url parameters or post parameters for token
-        var token = req.body.token || req.query.token || req.headers['x-access-token'];
+        var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.body.admin;
 
         // decode token
         if (token) {
@@ -161,43 +389,6 @@ module.exports = function(app, express, passport){
     
 
     
-    apiRouter.route('/college') //-COLLEGE-----------------------------------------------------------------------
-    
-
-    //Adding a new college to the database
-    .post(function(req, res) {
-
-       College.findOne({collegename: req.body.college}, function(error, college){
-        if(error) {
-            res.send(error);
-            console.log('here');
-        }
-        else
-            {
-                if(college == null)
-                    {
-                        var college = new College();
-                        college.collegename = req.body.college;
-                        college.save(function(err){
-                            if(err) return res.send(err);
-                        });
-                        res.send('saved!');
-                    }
-                else
-                    res.send(college);
-            }
-       }); 
-    })
-
-    //get list of all colleges
-    .get(function(req, res){
-        College.find({}, function(err, college){
-            if(err)
-                res.send('Error getting list of colleges.')
-            else
-                res.send(college);
-        });
-    });
 
     apiRouter.route('/college/:college_id') //GETTING INFO ABOUT A SPECIFIC COLLEGE--------------------------------------------
         
@@ -255,7 +446,7 @@ module.exports = function(app, express, passport){
     .get(function(req, res) {
         User
         .findById(req.params.user_id)
-        .populate('college', 'collegename')
+        .populate('college')
         .exec(function(error, info){
             if(error)
                 res.send(error);
@@ -499,48 +690,66 @@ module.exports = function(app, express, passport){
         });
     });
 
+    apiRouter.route('/users-lim') //GETTING INFO ALL USER LIMITED INFO--------------------------------------------
+    // get user info with that user id
+    .get(function(req, res) {
+        User
+        .find({})
+        .exec(function(error, info){
+            if(error)
+                res.send(error);
+            else
+                res.send(info);
+        });
+    });
+
+
+    //GEOLOCATION API-----------------------------------------------------
+    apiRouter.route('/geo/inradius')
+    .post(function(req, res){
+
+        var maxDistance = req.body.distance;
+        maxDistance /= 6371;
+        var coords = [];
+        coords[0] = req.body.longitude;
+        coords[1] = req.body.latitude;
+
+        // find a location
+        User.find({
+            geo: {
+                $geoWithin: {
+                    $centerSphere: [coords, maxDistance]
+                }
+            }
+        }).exec(function(err, locations) {
+            if (err) {
+                return res.json(500, err);
+            }
+            res.json(200, locations);
+        });
+    });
+
+    apiRouter.route('/geo/distance')
+    .post(function(req, res){
+        User.collection.geoNear(
+            [parseFloat(req.body.longitude), parseFloat(req.body.latitude)],
+            {spherical: true, maxDistance: parseFloat(req.body.distance)/6371,distanceMultiplier: 6371.0},
+            function(error, results, stats){
+
+                res.json(200, results);
+            }
+        )
+    })
+
     //LOGGED-IN-USER-CONTROL-----------------------------------------------------------------------------------------
 
     // api endpoint to get BASIC user information
     apiRouter.get('/me', function(req, res) {
+        
         res.send(req.decoded);
     });
 
     //NOTIFICATIONS
-
-    // api endpoint to get user information
-    apiRouter.post('/sendemail', function(req, res) {
-
-        var transporter = nodemailer.createTransport({
-            service: 'hotmail',
-            auth: {
-                user: 'karunk@live.com',
-                pass: 'rebelheart1989'
-            }
-        });
-
-        var emailInfo = {
-            from: 'College Carpool <karunk@live.com>', // sender address
-            to: req.body.recipient, // comma delimited list of receivers
-            subject: req.body.subject,
-            html: req.body.emailhtml
-            };
-
-        // send mail with defined transport object
-        transporter.sendMail(emailInfo, function(error, info){
-            if(error){
-                console.log(error);
-                return res.json({ success: true, message: info.response }); 
-            }else{
-                console.log('Message sent: ' + info.response);
-                console.log(req);
-                return res.json({ success: true, message: info.response });  
-
-            }
-        });
-
-    });
-
 
 
     return apiRouter;

@@ -28,7 +28,6 @@ var UserSchema = new Schema({
     },
     rollno: {
         type: String,
-        unique: true,
         required: true
     },
     college: {
@@ -54,10 +53,30 @@ var UserSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       }
-    }]
+    }],
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
+    geo : {
+      type: [Number],
+      index: '2d'
+    },
+    isVehicleOwner: {
+      type: Boolean,
+      default: false
+    },
+    vehicleCapacity: {
+      type: Number,
+      default: 0
+    }
 
 });
-
+UserSchema.index({rollno:1, college:1}, { unique: true });
 UserSchema.pre('save', function(callback) {
   var user = this;
 
@@ -85,22 +104,6 @@ UserSchema.methods.comparePassword = function(password) {
 };
 
 module.exports = mongoose.model('User', UserSchema);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

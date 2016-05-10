@@ -9,7 +9,11 @@ var CollegeSchema = new Schema({
     students: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    }]
+    }],
+    geo : {
+      type: [Number],
+      index: '2d'
+    }
 });
 
 

@@ -1,4 +1,5 @@
 <link href="assets/css/profile/simple-sidebar.css" rel="stylesheet">
+<link href="assets/css/profile/dash.css" rel="stylesheet">
 
 <body>
 
@@ -28,7 +29,7 @@
                     <a ui-sref="user.settings" ui-sref-active="active">SETTINGS <i class="fa fa-cogs"></i> </a>
                 </li>
                 <li>
-                    <a>LOGOUT <i class="fa fa-sign-out"></i> </a>
+                    <a ng-click="dash.doLogout()">LOGOUT <i class="fa fa-sign-out"></i> </a>
                 </li>
                 <div class="footer">
                     <notification-icon count='requestCount'>
@@ -44,17 +45,13 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
+  
+                
+                    
 
-                        	<div ui-view></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        	<div class="dash-page" ui-view></div>
+                    
+ 
         <!-- /#page-content-wrapper -->
 
     </div>

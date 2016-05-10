@@ -11,12 +11,8 @@
 #login-info-form
 {
     padding: 5em;
-    background-color: red;
 }
-#login-info-form div
-{
-    padding: 3em;
-}
+
 .flexbox  .col h1
 {
 	letter-spacing: -1px;
@@ -48,6 +44,7 @@
 #label
 {
 	color: black;
+    margin-top: 20px;
 }
 
 @import "compass/css3";
@@ -742,4 +739,30 @@
 }
 .hovicon.effect-9.sub-b:hover i {
     color: #fff;
+}
+
+
+.form-check
+{
+    display: flex;
+
+}
+.form-check input,select 
+{
+    max-width: 30em;
+}
+.tick
+{
+    margin-left: 1em;
+}
+.special_captcha
+{
+    margin-top: 2em;
+}
+#map_canvas
+{
+    height: 460px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
 }

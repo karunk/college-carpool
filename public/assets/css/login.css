@@ -10,7 +10,20 @@ button {
   cursor: pointer;
   border: none;
 }
-
+#lg
+{
+  margin-top: 30px;
+  width: 100%;
+  background-color: #999d99;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+#lg:hover{
+  background-color: black;
+  color: white;
+  transition: background .2s ease-in
+}
 /* close icon */
 .glyphicon {
   position: relative;
@@ -30,11 +43,7 @@ button {
 
 
 /* demo login form */
-.map
-{
-  height: 50em;
-  width: 50em;
-}
+
 .login {
   background: #333333;
   width: 400px;
@@ -42,12 +51,7 @@ button {
   color: #F0F1F0;
   font-weight: bold;
 }
-.moreinfo {
-  background: #7986cb;
-  margin-top: 3em;
-  color: #F0F1F0;
-  font-weight: bold;
-}
+
 .close {
   margin: 10px;
   z-index: 2000;

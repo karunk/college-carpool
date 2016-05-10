@@ -3,7 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Testing</title>
-	<base href="/">
+	<base href="/">  
+</head>
+
+<body ng-app="familiar" class="ng-cloak">
 
 	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
 	<link rel="stylesheet" href="assets/libs/bootstrap/dist/css/bootstrap.min.css">
@@ -15,11 +18,69 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
 
 
-	<!-- angular-fx.css goes after animate.css-->
-  	<link href="assets/libs/angular-fx/src/css/angular-fx.css" rel="stylesheet" type="text/css" />
   	<link rel='stylesheet' href='assets/libs/ng-input/dist/css/ng-input.css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link href="assets/libs/angular-tooltips/dist/angular-tooltips.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/angular-snap/angular-snap.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/libs/angular-notification-icons/dist/angular-notification-icons.min.css">
+
+
+	<link rel="stylesheet" href="assets/libs/v-modal/dist/v-modal.css">
+	<link rel="stylesheet" href="assets/libs/ngprogress/ngProgress.css">
+
+	<script type="text/javascript" src="assets/libs/angular/angular.min.js"></script>
+	<script type="text/javascript" src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="assets/libs/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="assets/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="assets/libs/ng-input/dist/ng-input.min.js"></script>
+	<script type="text/javascript" src="assets/libs/ngMorph/dist/angular-morph.min.js"></script>
+	<script type="text/javascript" src="assets/libs/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+	<script type="text/javascript" src="assets/libs/angular-google-staticmaps/angular-google-staticmaps.js"></script>
+	<script type="text/javascript" src="assets/js/fontawesome-markers.min.js"></script>
+	<script type="text/javascript" src="assets/libs/ng-letter-avatar/ngletteravatar.js"></script>
+	<script src="assets/libs/angular-notification-icons/dist/angular-notification-icons.min.js"></script>
+
+	<script src="assets/libs/ngProgress/build/ngprogress.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0-qAiRwPyQvhlQKOAirQ4Fs5kvucKXYw&libraries=places"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.js"></script>
+	<script src="assets/libs/angular-no-captcha/src/angular-no-captcha.js"></script>
+	<script src="assets/libs/v-modal/dist/v-modal.js"></script>
+
+
+
+
+
+
+
+	<!-- services -->
+	<script src="app/services/authService.js"></script>
+	<script src="app/services/locService.js"></script>
+	<script src="app/services/formService.js"></script>
+	<script src="app/services/dashService.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+
+
+	<!-- services -->
+	<script src="app/services/authService.js"></script>
+
+	<script type="text/javascript" src="app/app.routes.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<link rel="stylesheet" href="assets/libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/codrops/normalize.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/codrops/buttons.css">
+
+	<link href="assets/libs/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+
+
+  	<link rel='stylesheet' href='assets/libs/ng-input/dist/css/ng-input.css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link href="assets/libs/angular-snap/angular-snap.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="assets/libs/angular-notification-icons/dist/angular-notification-icons.min.css">
@@ -28,15 +89,12 @@
 
 
 
-	<script type="text/javascript" src="assets/libs/angular/angular.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script type="text/javascript" src="assets/libs/ng-input/dist/ng-input.min.js"></script>
 	<script type="text/javascript" src="assets/libs/ngMorph/dist/angular-morph.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
-	<script type="text/javascript" src="assets/libs/angular-tooltips/dist/angular-tooltips.min.js"></script>
-	<script type="text/javascript" src="assets/libs/ngmap/build/scripts/ng-map.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
 	<script type="text/javascript" src="assets/libs/angular-google-staticmaps/angular-google-staticmaps.js"></script>
 	<script type="text/javascript" src="assets/js/fontawesome-markers.min.js"></script>
@@ -45,7 +103,6 @@
 
 
     <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0-qAiRwPyQvhlQKOAirQ4Fs5kvucKXYw&libraries=places"></script>
     <script src="assets/libs/angular-google-places-map/dist/js/ngplacesmap.min.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.js"></script>
@@ -60,6 +117,7 @@
 	<!-- services -->
 	<script src="app/services/authService.js"></script>
 	<script src="app/services/locService.js"></script>
+	<script src="app/services/formService.js"></script>
 
 
 	<script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
@@ -74,13 +132,7 @@
    			
 
 
-</head>
-<body ng-app="familiar">
-	<script src="assets/libs/angular-fx/src/js/angular-fx.js"></script>
-   			
-
-
-	 	<div class="page {{ pageClass }}" ui-view></div>
+	 	<div class="page {{ pageClass }} " ui-view></div>
 	
 
 </body>
