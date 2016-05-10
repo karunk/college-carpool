@@ -7,7 +7,7 @@ var cookieParser 	= require('cookie-parser');
 var bodyParser 		= require('body-parser');
 
 var app     = express();
-var port    = process.env.PORT || 8000;
+var port    = process.env.PORT || 8080;
 var configDB = require('./config/database.js');
 var nodemailer = require("nodemailer");
 
