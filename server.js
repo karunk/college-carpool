@@ -18,6 +18,10 @@ var nodemailer = require("nodemailer");
 mongoose.connect(configDB.url);
 //mongoose.connect('mongodb://localhost/collegecarpool');
 
+
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/bower_components', express.static(__dirname + '/../bower_components'));
+app.use('/css', express.static(__dirname + '/css'));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
