@@ -57,7 +57,7 @@ angular.module('formService', [])
 		});
 	}
 	formFactory.verification_email = function(formData, link){
-		email_string = 'http://localhost:8080/verify/' + link;
+		email_string = 'https://collegecarpool.herokuapp.com/verify/' + link;
 		console.log(email_string);
 		return $http.post('/api/sendemail',{
 			recipient : formData.contact.email,
