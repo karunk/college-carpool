@@ -1,3 +1,5 @@
+
+
 var User        = require('../models/usermodel');
 var College        = require('../models/collegemodel');
 
@@ -518,22 +520,37 @@ module.exports = function(app, express, passport){
     });
 
 
-    apiRouter.route('/user/carpool/:user_id') //CARPOOL INFO ABOUT A SPECIFIC USER--------------------------------------------
-
-    //getting the list of carpoolers
-    .get(function(req, res){
-        User.findById(req.params.user_id)
-        .populate('carpoolers' , 'firstname', 'lastname', 'college')
-        .exec(function(error, info){
-            if(error)
-                res.send(error);
-            else
-                res.send(info);
+    apiRouter.route('/user/carpool/requestlist') // GETTING PENDING REQUEST LIST OF LOGGED IN USER -----------------------------
+    .post(function(req, res){
+        User.findById(req.body.user_id, function(err, userdata){
+            if(err) return res.send(err);
+            else{
+                return res.json({
+                    requests: userdata.carpool_requests
+                });
+            }
         });
-    })
+    });
+
+    apiRouter.route('/user/carpool/carpoolerlist') // GETTING CARPOOLER LIST OF LOGGED IN USER -----------------------------
+    .post(function(req, res){
+        User.findById(req.body.user_id, function(err, userdata){
+            if(err) return res.send(err);
+            else{
+                return res.json({
+                    carpooler_list: userdata.carpoolers
+                });
+            }
+        });
+    }); 
+
+
+
+    apiRouter.route('/user/carpool/:user_id') //CARPOOL INFO ABOUT A SPECIFIC USER--------------------------------------------
 
     //adding / requesting a carpool addition
     .post(function(req, res){
+        
         if(req.body.user_id == req.params.user_id)
             res.send('Cannot add yourself.');
         else{
@@ -548,6 +565,7 @@ module.exports = function(app, express, passport){
                                 var isInArray2 = user2.carpoolers.some(function(friend){
                                     return friend.equals(req.params.user_id);
                                 });
+
                                 if(isInArray1 == true || isInArray2 == true){
                                     res.send('They are already carpoolers.');
                                 }
@@ -566,17 +584,19 @@ module.exports = function(app, express, passport){
                                                     res.send('Request already sent.');
                                                 else{
                                                         user1.carpool_requests.push({
+                                                            //user1 recieves request
                                                             _id: req.body.user_id,
                                                             read: false,
-                                                            request_sent: true
+                                                            request_sent: false
                                                          });
                                                         user1.save(function(err){
                                                             if(err) res.send(err);
                                                         else{
                                                             user2.carpool_requests.push({
+                                                                //user2 has sent request
                                                                 _id: req.params.user_id,
                                                                 read: false,
-                                                                request_sent: false
+                                                                request_sent: true
                                                             });
                                                             user2.save(function(err){
                                                                 if(err) res.send(err);
@@ -627,13 +647,19 @@ module.exports = function(app, express, passport){
         }
     })
 
-    .delete(function(req, res){
+    .put(function(req, res){
+        console.log('here to del carpool')
+        console.log(req.body.action, req.body.user_id)
         User.findById(req.params.user_id, function(err, user1){
+            console.log('here to del carpool step1')
             if(err) return res.send(err);
             User.findById(req.body.user_id, function(err, user2){
+                console.log('here to del carpool step2')
                 if(err) return res.send(err);
                 else{
+                    console.log('here to del carpool step3')
                     if(req.body.action == 'delete_request'){
+                         console.log('here to del carpool wrong')
                         user1.carpool_requests.pull(
                             req.body.user_id);
                         user1.save(function(err){
@@ -653,6 +679,7 @@ module.exports = function(app, express, passport){
                         });
                     }
                     else if(req.body.action == 'delete_carpool'){
+                        console.log('here to del carpool step4')
                         user1.carpoolers.pull(
                             req.body.user_id);
                         user1.save(function(err){
@@ -671,6 +698,7 @@ module.exports = function(app, express, passport){
                             }
                         });
                     }
+                     console.log('going', req.body.action, req.body.user_id)
                 }
             });
         })

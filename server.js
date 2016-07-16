@@ -6,17 +6,17 @@ var morgan 			= require('morgan');
 var cookieParser 	= require('cookie-parser');
 var bodyParser 		= require('body-parser');
 
-var app     = express();
 var port    = process.env.PORT || 8080;
 var configDB = require('./config/database.js');
 var nodemailer = require("nodemailer");
 
 
+//mongoose.connect(configDB.url);
+mongoose.connect('mongodb://localhost/collegecarpool');
 
 
+var app     = express();
 
-mongoose.connect(configDB.url);
-//mongoose.connect('mongodb://localhost/collegecarpool');
 
 
 app.use('/js', express.static(__dirname + '/js'));

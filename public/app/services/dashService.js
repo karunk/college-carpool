@@ -33,13 +33,64 @@ angular.module('dashService', [])
 	dashFactory.college_info_by_id = function(id){
 		return $http.get('api/college/'+id)
 	};
-	/*formFactory.validate_email = function(email){
-		return $http.post('/api/isthere/email', {
-			email: email
+
+	dashFactory.sendCarpoolRequest = function(ClickeduserId, LoggedInUserId){
+		console.log(ClickeduserId);
+		console.log(LoggedInUserId);
+		return $http.post('api/user/carpool/'+ClickeduserId, {
+			user_id : LoggedInUserId,
+			action  : 'add_request'
 		}).success(function(data){
-			return data.success;
+			return data;
 		})
-	}*/
+	};
+
+	dashFactory.AcceptRequest = function(ClickeduserId, LoggedInUserId){
+		console.log(ClickeduserId);
+		console.log(LoggedInUserId);
+		return $http.post('api/user/carpool/'+ClickeduserId, {
+			user_id : LoggedInUserId,
+			action  : 'add_carpool'
+		}).success(function(data){
+			return data;
+		})
+	};
+	dashFactory.RejectRequest = function(ClickeduserId, LoggedInUserId){
+		console.log(ClickeduserId);
+		console.log(LoggedInUserId);
+		return $http.put('api/user/carpool/'+ClickeduserId, {
+			user_id : LoggedInUserId,
+			action  : 'delete_request'
+		}).success(function(data){
+			return data;
+		})
+	};
+	dashFactory.Unfriend = function(ClickeduserId, LoggedInUserId){
+		console.log(ClickeduserId);
+		console.log(LoggedInUserId);
+		return $http.put('api/user/carpool/'+ClickeduserId, {
+			user_id : LoggedInUserId,
+			action  : 'delete_carpool'
+		}).success(function(data){
+			return data;
+		})
+	};
+
+	dashFactory.getRequestList = function(LoggedInUserId){
+		return $http.post('api/user/carpool/requestlist', {
+			user_id : LoggedInUserId,
+		}).success(function(data){
+			return data;
+		})
+	};
+
+	dashFactory.getCarpoolerList = function(LoggedInUserId){
+		return $http.post('api/user/carpool/carpoolerlist', {
+			user_id : LoggedInUserId,
+		}).success(function(data){
+			return data;
+		})
+	};
 
 	return dashFactory;
 

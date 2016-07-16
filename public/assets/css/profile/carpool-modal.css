@@ -78,3 +78,20 @@ button:hover{
 {
 	margin-bottom: 10px;
 }
+.approve-cancel{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+table{
+	width: 100%;
+}
+.space-btw{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+
+

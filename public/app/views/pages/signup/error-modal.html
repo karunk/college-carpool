@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="assets/css/submit-modal.css">
+
+<v-modal class="vModal--default" onclose="myModalCtrl.close()">
+  <v-dialog heading="My modal" medium middle>
+    <v-close label="Close"></v-close>
+    	<div class= "submit-info">
+    		<h3>{{stringValue1}}</h3>
+    		<text>{{objectValue.data1}}</text>
+    		<text>{{objectValue.data2}}</text>
+    		<button ng-click="myModalCtrl.redirect()">OK</button>
+    	</div>
+    
+  </v-dialog>
+</v-modal>

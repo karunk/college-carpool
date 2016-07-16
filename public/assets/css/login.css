@@ -1,94 +1,83 @@
-
 * {
-  box-sizing: border-box;
+    box-sizing: border-box
 }
-
 button {
-  width: 250px;
-  height: 50px;
-  outline: none;
-  cursor: pointer;
-  border: none;
+    width: 250px;
+    height: 50px;
+    outline: none;
+    cursor: pointer;
+    border: none
 }
-#lg
-{
-  margin-top: 30px;
-  width: 100%;
-  background-color: #999d99;
-  color: white;
-  font-size: 18px;
-  letter-spacing: 2px;
+#lg {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #999d99;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 2px
 }
-#lg:hover{
-  background-color: black;
-  color: white;
-  transition: background .2s ease-in
+#lg:hover {
+    background-color: black;
+    color: white;
+    transition: background .2s ease-in
 }
-/* close icon */
 .glyphicon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 .glyphicon-remove:before {
-  content: "\e014";
+    content: "\e014"
 }
-
-
-
-/* demo login form */
-
 .login {
-  background: #333333;
-  width: 400px;
-  height: 400px;
-  color: #F0F1F0;
-  font-weight: bold;
+    background: #333333;
+    width: 400px;
+    height: 400px;
+    color: #F0F1F0;
+    font-weight: bold
 }
-
 .close {
-  margin: 10px;
-  z-index: 2000;
-  font-size: 25px;
-  float: right;
-  cursor: pointer;
-  color: rgb(19, 146, 121);
+    margin: 10px;
+    z-index: 2000;
+    font-size: 25px;
+    float: right;
+    cursor: pointer;
+    color: rgb(19, 146, 121)
 }
 .close:hover {
-  color: #F0F1F0;
+    color: #F0F1F0
 }
-
 form {
-  position: relative;
-  text-align: left;
-  padding: 25px;
+    position: relative;
+    text-align: left;
+    padding: 25px
 }
 form p {
-  margin-bottom: 5px;
+    margin-bottom: 5px
 }
 form label {
-  display: block;
-  font-size: 16px;
-  padding: 10px 0 0;
-  color: #FCFCFC;
-  letter-spacing: 1px;
-  font-weight: normal;
+    display: block;
+    font-size: 16px;
+    padding: 10px 0 0;
+    color: #FCFCFC;
+    letter-spacing: 1px;
+    font-weight: normal
 }
 form input {
-  padding: 10px;
-  width: 100%;
-  border: 2px solid #F0F1F0;
-  background: transparent;
-  color: #F0F1F0;
-  font-weight: 300;
-  font-size: 24px;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid #F0F1F0;
+    background: transparent;
+    color: #F0F1F0;
+    font-weight: 300;
+    font-size: 24px
 }
 form input:focus {
-  outline: 0;
+    outline: 0
 }

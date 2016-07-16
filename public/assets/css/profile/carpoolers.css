@@ -1,0 +1,36 @@
+.my-carpool-panel{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.carpooler-list{
+
+	background-color: #282828;
+	color: white;
+}
+.list{
+	display: flex;
+	background-color: blue;
+}
+#closerow{
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+}
+.carpool-panel-sub
+{
+	display: flex;
+	flex-direction: row;
+}
+.panel-icon{
+	padding-top: 20px;
+}
+
+.carpool-panel-sub a{
+	color: black; !important;
+}

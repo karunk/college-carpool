@@ -33,7 +33,8 @@
     "AngularJS-Toaster": "angularjs-toaster#~1.0.0",
     "angular-notification-icons": "~0.4.3",
     "angular-google-places-map": "~1.1.10",
-    "angular-no-captcha": "~0.6.0"
+    "angular-no-captcha": "~0.6.0",
+    "angular-spinkit": "~0.3.4"
   },
   "resolutions": {
     "angular": "1.4.8"

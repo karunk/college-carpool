@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/profile/carpool-modal.css">
 <v-modal class="vModal--default" onclose="myModalCtrl.close()">
+<toaster-container></toaster-container>
   <v-dialog heading="My modal" medium middle>
     <v-close label="Close"></v-close>
     	<div class = "modal_container">
@@ -26,8 +27,25 @@
 					<div class="box-content">Quality Assurance</div>
 				</div>
 
-	    		<button><i class="fa fa-user-plus fa-lg"></i><text>SEND CARPOOL REQUEST</text></button>
-	    		
+	    		<button ng-show="!isYou && !isRequested && !isFriend && toggle" ng-click="sendRequest()"><i class="fa fa-user-plus fa-lg"></i><text>SEND CARPOOL REQUEST</text></button>
+	    		<div ng-show="isYou">
+	    			<h3>
+	    				This is you.
+	    			</h3>
+	    		</div>
+	    		<div ng-show="isRequested">
+	    			<h3>
+	    				You have sent a request to be carpool friends with this user.
+	    			</h3>
+	    		</div>
+	    		<div ng-show="isFriend">
+	    			<h3>
+	    				You are carpool friends with this user.
+	    			</h3>
+	    		</div>
+	    		<div ng-show="!toggle">
+	    			<h3>Request sent!</h3>
+	    		</div>
 	    	</div>
 	    </div>
   </v-dialog>

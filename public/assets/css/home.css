@@ -1,53 +1,40 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300italic,400);
-
-
-#map_canvas_front_page
-{
+#map_canvas_front_page {
     height: 100vh;
-    width: 50vw;
+    width: 50vw
 }
-.container-fluid
-{
-  padding-top: 0px;
-  height: 100%;
-  width: 100%;
+.container-fluid {
+    padding-top: 0px;
+    height: 100%;
+    width: 100%
 }
-.map
-{
-  padding: 0px;
-  margin: 0px;
-  height: 100vh;
+.map {
+    padding: 0px;
+    margin: 0px;
+    height: 100vh
 }
-.row
-{
-  min-height: 100%;
+.row {
+    min-height: 100%
 }
-
-#heading
-{
-  background-color: white;
+#heading {
+    background-color: white
 }
-.front_page_button 
-{
-  padding-left: 32%;
+.front_page_button {
+    padding-left: 32%
 }
-.front_page_text
-{
-  font-size: 24px;
-  font-family: 'Lato', sans-serif;
-  padding-top: 40px;
-  padding-bottom: 20px;
-  text-transform: uppercase;
+.front_page_text {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase
 }
-.text2
-{
-  font-size: 17px;
+.text2 {
+    font-size: 17px
 }
-#base
-{
-  height: 100%;
-  width: 110%;
-  background-color: black;
-  padding: 0px;
-  margin: 0px;
+#base {
+    height: 100%;
+    width: 110%;
+    background-color: black;
+    padding: 0px;
+    margin: 0px
 }

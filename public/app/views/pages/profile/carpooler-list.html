@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="assets/css/profile/carpool-modal.css">
+<v-modal class="vModal--default" onclose="Clist.close()">
+
+  <v-dialog large heading="My modal" medium middle>
+    <v-close label="Close"></v-close>
+    	<div class = "modal_container">
+	    	<div ng-show="!ListReady && !ListEmpty">
+	    		<cube-grid-spinner></cube-grid-spinner>
+	    	</div>
+	    	<div ng-show="!ListReady && ListEmpty">
+	    		<h3>You dont have any carpooler friends.</h3>
+	    	</div>
+	    	<div ng-show="ListReady">
+	    		
+	    		<table>
+		    		<tr ng-repeat="val in CarpoolersA">
+		    			<td> 
+			    			<div class="space-btw bottom">
+			    				<div class="modal_header">
+				    				<ng-letter-avatar data="{{val.firstname}}"  fontsize="90" font="sans-serif" avatarborder="true" height="100" width="100"></ng-letter-avatar>
+						    		<div class="modal_text_header">
+						    			<h1>{{val.firstname}} {{val.lastname}}</h1>
+						    			<div id="modal_sub_heading">{{val.collegename}}</div>
+						    			<div id="modal_sub_sub_heading"><i class="fa fa-envelope-o"></i><text>{{val.email}}</text></div>
+						    		</div>
+						    	</div>
+					    		<div ng-show="CarpoolersD[val._id].listshow"  class="approve-cancel">
+					    			<i class="fa fa-times fa-2x" ng-click="Unfriend(val._id)" aria-hidden="true"></i>
+					    		</div>
+					    		<div ng-show="!CarpoolersD[val._id].listshow">
+					    			<h5>You have {{CarpoolersD[val._id].decision}} this person.</h5>
+					    		</div>
+			    			</div>
+		  				</td> 
+					</tr>
+				</table>
+	    	</div>
+
+
+	    </div>
+  </v-dialog>
+</v-modal>
