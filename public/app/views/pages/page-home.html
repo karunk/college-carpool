@@ -9,12 +9,11 @@
 
     <div class="col-md-6 full-height-col"> 
 
-    <div ng-show="!welcome_map">
-      <div class="row front_page_text">
-        <text>Loading Your Location Details ...</text>
+    
+      <div style="height: 100vh; width: 100vh;" ng-show="!welcome_map">
         <cube-grid-spinner></cube-grid-spinner>
       </div>
-    </div>
+    
       <div ng-show="welcome_map" class="jumbotron" id="heading">
           <h1>COLLEGE<br> CARPOOL</h1>
           <div class="row front_page_text">
