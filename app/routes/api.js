@@ -261,8 +261,8 @@ module.exports = function(app, express, passport){
         var transporter = nodemailer.createTransport({
             service: 'hotmail',
             auth: {
-                user: 'karunk@live.com',
-                pass: 'rebelheart1989'
+                user: 'collegecarpool@hotmail.com',
+                pass: 'CollegeCar2016'
             }
         });
 

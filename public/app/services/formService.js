@@ -57,7 +57,7 @@ angular.module('formService', [])
 		});
 	}
 	formFactory.verification_email = function(formData, link){
-		email_string = 'https://collegecarpool.herokuapp.com/verify/' + link;
+		email_string = "<a href='https://collegecarpool.herokuapp.com/verify/"+link+"'>CLICK TO VERIFY</a>";
 		console.log(email_string);
 		return $http.post('/api/sendemail',{
 			recipient : formData.contact.email,
