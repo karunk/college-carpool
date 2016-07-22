@@ -11,8 +11,8 @@ var configDB = require('./config/database.js');
 var nodemailer = require("nodemailer");
 
 
-mongoose.connect(configDB.url);
-//mongoose.connect('mongodb://localhost/collegecarpool');
+//mongoose.connect(configDB.url);
+mongoose.connect('mongodb://localhost/collegecarpool');
 
 
 var app     = express();

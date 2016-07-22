@@ -71,3 +71,6 @@ Thumbs.db
 *.eot
 *.ttf
 *.woff
+
+# Dependency directories
+node_modules
