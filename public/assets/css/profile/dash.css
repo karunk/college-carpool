@@ -10,3 +10,11 @@
 	padding-top: 3em;
 	text-align: center; 
 }
+#loading{
+	
+	height:100vh;
+	width: 100%;
+	position: absolute;
+	z-index: 9999;
+	background-color: white;
+}

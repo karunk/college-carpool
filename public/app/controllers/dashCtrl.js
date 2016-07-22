@@ -6,6 +6,7 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
     var vm = this;
 
     //variables
+    $scope.dashReady = false;
     $scope.name = "";
     $scope.requestCount = 20;
     $scope.ready = false;
@@ -57,10 +58,17 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
     }();
 
     control_main = function(){
-        if($scope.currentstate != "user.carpoolmap")
+        console.log('hohoho', $scope.currentstate)
+        if($scope.currentstate == undefined){
             $timeout(control_main2);
-        else
+        }
+        else if($scope.currentstate != "user.carpoolmap"){
+            console.log('first','hohoho')
+            //$timeout(control_main2);
+        }
+        else{
             $timeout(control_main3);
+        }
 
     }
     control_main2 = function(){
@@ -86,6 +94,8 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
                                     Dash.getCarpoolerList($scope.loggedin_user_data._id)
                                         .success(function(data){
                                             $scope.no_of_carpoolers = data.carpooler_list.length;
+                                            $scope.dashReady = true;
+                                            console.log('hohoho')
                                         })
                                 })
                         }
@@ -187,7 +197,28 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false
         };
-        map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+        try{
+
+             map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+        }
+        catch(e){
+            console.log('MAP ERROR!');
+            if($scope.currentstate == 'user.carpoolmap'){
+                $state.go('user.carpoolmap');
+            }
+            $scope.$apply(function(){
+                $scope.dashReady = true;
+            });
+        }
+        try{
+            google.maps.event.addListenerOnce(map, "tilesloaded", function () {
+                $scope.$emit('mapInitialized', map);
+            });
+        }
+        catch(e){
+            return;
+        }
 
         var cityCircle = new google.maps.Circle({
           strokeColor: '#FF0000',
@@ -240,8 +271,17 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
             MapMarkers.push([marker, $scope.college_data[markers[i][3]]]);
         }
         $scope.enabled = true;
+
     }
-   
+    $scope.$on('mapInitialized', function(event, map) {
+        
+        console.log('map done','hohoho');
+        $scope.$apply(function(){
+            $scope.dashReady = true;
+        });
+        console.log('dash ready');
+        // in here you set some variable to actually hide the splash screen
+    });
 
 
     $rootScope.$on('$stateChangeStart', 
