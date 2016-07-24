@@ -92,6 +92,7 @@ angular.module('dashService', [])
 		})
 	};
 
+	
 	return dashFactory;
 
 });

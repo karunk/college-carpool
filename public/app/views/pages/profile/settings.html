@@ -1,3 +1,42 @@
-
-<a ng-click="add_college()">Request addition of a college</a>
 							
+<div class="container">
+<h3> {{loggedin_user_data.firstname}} {{loggedin_user_data.lastname}}'s settings </h3>
+
+
+<hr>
+
+	<div class="my-carpool-panel">
+		<div class="carpool-panel-sub">
+			<div class="panel-icon">
+		        
+		            <a> <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i></a>
+		       
+	        </div>
+		<button ng-click="add_college()" class="button button--tamaya button--border-thick" data-text="REQUEST COLLEGE ADDITION">Include a college </button>
+		</div>
+
+	</div>
+
+<hr>
+
+
+</div>
+
+<div class="container"> 
+	<div>
+		<div class="panel-icon">
+			<i class="fa fa-search fa-3x" aria-hidden="true"></i> 
+		</div>
+		<h3>Line of Sight</h3>
+		<text>Control the distance upto which carpoolers will be visible in the map.</text>
+	</div>
+	<div class="centerflex">
+		<div class="nearlist">
+			<input id="inputdistance" type="number" ng-model="dash.lineofsight">
+			<div class="km">
+				<h2>kilometeres</h2>
+			</div>
+		</div>
+		<button  ng-click="refreshmap()" class="button button--tamaya button--border-thick" data-text="REFRESH MAP">Click to re-render map</button>
+	</div>
+</div>

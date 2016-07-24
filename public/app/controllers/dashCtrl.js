@@ -1,11 +1,14 @@
 var app = angular.module('dashCtrl', ['lService','formService','dashService','ngAnimate'])
 
 
-app.controller('dashController', function($scope, Auth, toaster, $location, $state, $timeout, Dash, $rootScope, settings_modal, carpooler_modal, sharedProperties, ListModal, CarpoolerListModal){
+app.controller('dashController', function($q, $scope, Auth, toaster, $location, $state, $timeout, Dash, $rootScope, settings_modal, carpooler_modal, sharedProperties, ListModal, CarpoolerListModal){
     $scope.pageClass = 'page-dash';
     var vm = this;
 
     //variables
+    vm.lineofsight = 1;
+    $scope.listnoshow = false;
+    $scope.CarpoolersNearMeListReady = false;
     $scope.dashReady = false;
     $scope.name = "";
     $scope.requestCount = 20;
@@ -17,10 +20,14 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
     $scope.college_data = [];
     $scope.no_of_requests;
     $scope.no_of_carpoolers;
+    $scope.NearMeList = [];
     //map variables
     var markers = [];
     var MapMarkers = [];
+    var tmpRawNearMeList = [];
     
+
+
     //get all logged in user data -- everything
     getinfo = function(){
         Auth.getUser()
@@ -37,11 +44,13 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
                         $scope.no_of_requests = completeData.carpool_requests.length;
                         data.lat = $scope.loggedin_user_data.geo[1];
                         data.lng = $scope.loggedin_user_data.geo[0];
-                        data.distance = 1;
-                      
+                        data.distance = vm.lineofsight;
+                        console.log('dis', vm.lineofsight);
                         Dash.circle_fill(data)
                             .success(function(userList){
-                                  
+                                    console.log(userList);
+                                    $scope.NearMeList = userList;
+                                    tmpRawNearMeList = userList;
                                     for(var i = 0; i<userList.length; i++){
                                         Dash.college_info_by_id(userList[i].college)
                                             .success(function(college_data){
@@ -55,6 +64,16 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
                             });
                     })
             });
+    };
+
+
+    $scope.refreshmap = function(){
+        getinfo();
+       // console.log(vm.lineofsight)
+    }
+
+    var initializedash = function(){
+        getinfo();
     }();
 
     control_main = function(){
@@ -62,18 +81,22 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
         if($scope.currentstate == undefined){
             $timeout(control_main2);
         }
-        else if($scope.currentstate != "user.carpoolmap"){
-            console.log('first','hohoho')
-            //$timeout(control_main2);
+        else if($scope.currentstate == "user.carpoolers"){
+            
+            $scope.NearMe();
+           
         }
         else{
+            $scope.listnoshow = false;
             $timeout(control_main3);
         }
 
     }
     control_main2 = function(){
-       
+        $scope.listnoshow = true;
+        $scope.$apply();
         initializeMaps();
+
     }
     control_main3 = function(){
         
@@ -123,9 +146,9 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
      
      
         var bounds = new google.maps.LatLngBounds();
-        //bounds.extend(start);
-        //bounds.extend(end);
-        //map.fitBounds(bounds);
+        bounds.extend(start);
+        bounds.extend(end);
+        map.fitBounds(bounds);
         var request = {
             origin: start,
             destination: end,
@@ -136,7 +159,7 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
                 directionsDisplay.setDirections(response);
                 directionsDisplay.setMap(map);
                 clicked_marker_direction_response = response;
-
+                console.log('HOHO',response)
                 carpooler_modal_data['user_to_college_directions']         = user_direction_response;
                 carpooler_modal_data['clicked_user_to_college_directions'] = clicked_marker_direction_response;
            
@@ -228,7 +251,7 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
           fillOpacity: 0.25,
           map: map,
           center: latlng,
-          radius: 1000
+          radius: vm.lineofsight*1000
         });
 
         var infowindow = new google.maps.InfoWindow(), marker, i;
@@ -271,7 +294,6 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
             MapMarkers.push([marker, $scope.college_data[markers[i][3]]]);
         }
         $scope.enabled = true;
-
     }
     $scope.$on('mapInitialized', function(event, map) {
         
@@ -343,13 +365,112 @@ app.controller('dashController', function($scope, Auth, toaster, $location, $sta
 
     };
     
+    
+    $scope.NearMe = function(){
+       $scope.NearMeList = tmpRawNearMeList
+        var geodata = {
+            "lng" : $scope.loggedin_user_data.geo[0],
+            "lat" : $scope.loggedin_user_data.geo[1]
+        }
+
+    
+        var geocoder = new google.maps.Geocoder;
+        
+        var FilterList = function(){
+            $scope.NearMeList = []
+            for(var i=0; i<CleanNearMeList.length; i++){
+                if($scope.loggedin_user_data._id!=CleanNearMeList[i]._id)
+                    $scope.NearMeList.push(CleanNearMeList[i]);
+
+            }
+            ListReady();
+        }
+        //utility function
+        var contains = function(needle) {
+            // Per spec, the way to identify NaN is that it is not equal to itself
+            var findNaN = needle !== needle;
+            var indexOf;
+
+            if(!findNaN && typeof Array.prototype.indexOf === 'function') {
+                indexOf = Array.prototype.indexOf;
+            } else {
+                indexOf = function(needle) {
+                    var i = -1, index = -1;
+
+                    for(i = 0; i < this.length; i++) {
+                        var item = this[i];
+
+                        if((findNaN && item !== item) || item === needle) {
+                            index = i;
+                            break;
+                        }
+                    }
+
+                    return index;
+                };
+            }
+
+            return indexOf.call(this, needle) > -1;
+        };
+        var ListReady = function(){
+            console.log($scope.NearMeList)
+            $scope.CarpoolersNearMeListReady = true;
+            $scope.$apply();
+        }
+        
+
+        //cleaning the nearmelist
+        var CleanNearMeList = [];
+        
+        for(var i = 0; i<$scope.NearMeList.length; i++){
+
+            var tmpObj = {};
+            console.log('$$$',$scope.NearMeList[i]);
+            tmpObj.firstname = $scope.NearMeList[i].firstname;
+            tmpObj.lastname = $scope.NearMeList[i].lastname;
+            tmpObj.mobile = $scope.NearMeList[i].mobile;
+            tmpObj.college = $scope.college_data[$scope.NearMeList[i].college].collegename;
+            tmpObj.vehicle = $scope.NearMeList[i].isVehicleOwner;
+            tmpObj.email = $scope.NearMeList[i].email;
+            tmpObj.latlng = new google.maps.LatLng($scope.NearMeList[i].geo[1], $scope.NearMeList[i].geo[0]);
+            tmpObj._id = $scope.NearMeList[i]._id;
+            
+            (function(tmpObj){
+                
+                geocoder.geocode({'location': tmpObj.latlng}, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            
+                            tmpObj.address = results[1].formatted_address;
+                            
+                        } 
+                        else {
+                            tmpObj.address = "";
+                        }
+                        } 
+                        else {
+                            tmpObj.address = "";
+                        }
+                    
+                    CleanNearMeList.push(tmpObj);
+                    if(CleanNearMeList.length == $scope.NearMeList.length)
+                        FilterList();
+                });
+            })(tmpObj);
+            
+        }
+
+    }
+
+
+
 
 
 
 }); 
 
 
-
+            
 
 
 

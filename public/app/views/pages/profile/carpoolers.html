@@ -24,9 +24,41 @@
 		</div>
 	</div>
 
-
 <hr>
 
+	<div class="column-arrange">
+		<h3 ng-show = "!listnoshow"> People within {{dash.lineofsight}} kilometeres radius you..</h3>
+		
+		<div ng-show="!CarpoolersNearMeListReady && !listnoshow">
+			<cube-grid-spinner></cube-grid-spinner>
+		</div>
+		<div class="nearlist" ng-show="CarpoolersNearMeListReady">
+
+			<div class ="listitem" ng-repeat="val in NearMeList">
+				<div class="profilepic">
+					<ng-letter-avatar data={{val.firstname}}  fontsize="40" font="sans-serif" avatarborder="true" height="70" width="70"></ng-letter-avatar>
+				</div>
+				<div class="iteminfo">
+					<h3>{{val.firstname}} {{val.lastname}}</h3>
+					<h4>{{val.college}}</h4>
+					<div ng-show="!val.vehicle">
+						<h4>Is looking for a ride</h4>
+					</div>
+					<div ng-show="val.vehicle">
+						<h4>Wants to share a ride</h4>
+					</div>
+				</div>
+				<div class="iteminfo">
+					<h4>LOCATION</h4>
+					<div class="address">
+						<text>{{val.address}}</text>
+						<button  class="button button--tamaya button--border-thick" data-text="ANALYZE ROUTE">Find route overlap.</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 </div>
 
