@@ -261,13 +261,13 @@ module.exports = function(app, express, passport){
         var transporter = nodemailer.createTransport({
             service: 'hotmail',
             auth: {
-                user: 'collegecarpool@hotmail.com',
-                pass: 'CollegeCar2016'
+                user: '**blocked**',
+                pass: '**blocked**'
             }
         });
 
         var emailInfo = {
-            from: 'College Carpool <karunk@live.com>', // sender address
+            from: '**blocked**', // sender address
             to: req.body.recipient, // comma delimited list of receivers
             subject: req.body.subject,
             html: req.body.emailhtml
